@@ -1,5 +1,5 @@
 #!/bin/bash
-: ${TARGET:="main"}
+TARGET=${TARGET:=main}
 
 set -e
 
