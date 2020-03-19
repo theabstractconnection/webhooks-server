@@ -3,6 +3,12 @@
 
 set -e
 
+SERVER_USERNAME=$(echo $SERVER_USERNAME | tr -d '\r')
+PROJECT_NAME=$(echo $PROJECT_NAME | tr -d '\r')
+GIT_URL=$(echo $GIT_URL | tr -d '\r')
+GIT_URL=$(echo $GIT_URL | tr -d '\r')
+
+
 if [[ -z "${SERVER_USERNAME}" ]] || [[ -z "${PROJECT_NAME}" ]] || [[ -z "${GIT_URL}" ]]
 then
   echo ">>> REQUIRED VARIABLES ARE NOT PRESENT"
@@ -10,10 +16,10 @@ then
   exit 1
 else
   echo ">>> CD INTO /home/${SERVER_USERNAME}" 
-  cd /home/${SERVER_USERNAME}
+  cd /home/$SERVER_USERNAME
   if [[ -d $PROJECT_NAME ]] 
   then
-    echo ">>> CD INTO $PROJECT_NAME" 
+    echo ">>> CD INTO ${PROJECT_NAME}" 
     cd $PROJECT_NAME
 
     echo ">>> CHECK GIT STATUS" 
@@ -26,8 +32,8 @@ else
       echo "!!!!!! EXITING"
       exit 1
     fi
-  else
-    echo ">>> CLONING $PROJECT_NAME" 
+  else  
+    echo ">>> CLONING ${PROJECT_NAME}" 
     git clone $GIT_URL
   fi
 
