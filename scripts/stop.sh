@@ -10,4 +10,4 @@ echo "ENV : APPLICATION_PATH = ${APPLICATION_PATH}"
 
 echo ">>> STOP SCRIPT"
 cd "${APPLICATION_PATH}"
-npx pm2 stop "${APP_NAME}" || true
+pm2 stop "${APP_NAME}" || true
