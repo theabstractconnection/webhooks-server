@@ -48,6 +48,7 @@ app.post("/", verifyPostData, (req, res) => {
       githubInfos: req.body
     }));
     deploy(req, res, repositoryName, repositorySshUrl);
+    res.sendStatus(200);
   }
 });
 
@@ -84,10 +85,6 @@ function verifyPostData(req, res, next) {
 }
 
 function deploy(req, res, repositoryName, repositorySshUrl) {
-  console.log("DEPLOY");
-  let deploymentProcessOutput = "";
-  let deploymentProcessError = "";
-
   const deploymentProcess = childProcess.spawn("/bin/bash", [
     "-c",
     `
@@ -102,32 +99,20 @@ function deploy(req, res, repositoryName, repositorySshUrl) {
   deploymentProcess.stdout.setEncoding("utf8");
   deploymentProcess.stdout.on("data", function(data) {
     console.log("stdout: " + data);
-    data = data.toString();
     broadcast(aWss.clients, JSON.stringify({
       event: "stdout",
       output: data,
       githubInfos: req.body
     }));
-    deploymentProcessOutput += data;
-    if (deploymentProcessOutput.includes("BUILDING SERVICES")) {
-      console.log("OK")
-      res.sendStatus(200);
-    }
   });
 
   deploymentProcess.stderr.setEncoding("utf8");
   deploymentProcess.stderr.on("data", function(data) {
-    console.log("stderr: " + data);
-    data = data.toString();
     broadcast(aWss.clients, JSON.stringify({
       event: "stderr",
       output: data,
       githubInfos: req.body,
     }));
-    deploymentProcessError += data;
-    if (deploymentProcessError) {
-      res.sendStatus(500);
-    }
   });
 }
 
