@@ -4,6 +4,7 @@ const expressWs = require('express-ws');
 const expressWsExpress = expressWs(express());
 const childProcess = require("child_process");
 const crypto = require("crypto");
+const queryString = require('query-string');
 
 var app = expressWsExpress.app;
 const aWss = expressWsExpress.getWss();
@@ -14,7 +15,7 @@ const sigHeaderName = "X-Hub-Signature";
 const API_SECRET = process.env.API_SECRET || "";
 const GITHUB_USERNAME = process.env.GITHUB_USERNAME || "";
 const GITHUB_ORGANIZATION = process.env.GITHUB_ORGANIZATION || "";
-const SERVER_USERNAME = process.env.SERVER_USERNAME;
+const SERVER_USERNAME = process.env.SERVER_USERNAME || "";
 
 const PORT = process.env.PORT || 9000;
 
@@ -85,12 +86,14 @@ function verifyPostData(req, res, next) {
 }
 
 function deploy(req, res, repositoryName, repositorySshUrl) {
+  const parsed = queryString.parse(req.originalUrl);
+  const target = ('/?target' in parsed) ? parsed['/?target'] : ''
   const deploymentProcess = childProcess.spawn("/bin/bash", [
     "-c",
     `
         export PROJECT_NAME="${repositoryName}";
         export GIT_URL="${repositorySshUrl}";
-        export TARGET="${req.query.target || ""}";
+        export TARGET="${target}";
         export SERVER_USERNAME="${SERVER_USERNAME}";
         ./webhooks-server/deploy.sh 
       `
