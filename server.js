@@ -6,7 +6,7 @@ const childProcess = require("child_process");
 const crypto = require("crypto");
 
 var app = expressWsExpress.app;
-const aWss = expressWsExpress.getWss();
+const aWss = () => expressWsExpress.getWss();
 
 
 const sigHeaderName = "X-Hub-Signature";
@@ -99,21 +99,24 @@ function deploy(req, res, repositoryName, repositorySshUrl) {
 
   deploymentProcess.stdout.setEncoding("utf8");
   deploymentProcess.stdout.on("data", function(data) {
-    console.log("stdout: " + data);
-    broadcast(aWss.clients, JSON.stringify({
-      event: "stdout",
-      output: data
-      // githubInfos: req.body
-    }));
+    data.split("\n").forEach((item) => {
+      broadcast(aWss.clients, JSON.stringify({
+        event: "stdout",
+        output: item
+        // githubInfos: req.body
+      }));
+    })
   });
 
   deploymentProcess.stderr.setEncoding("utf8");
   deploymentProcess.stderr.on("data", function(data) {
-    broadcast(aWss.clients, JSON.stringify({
-      event: "stderr",
-      output: data
-      // githubInfos: req.body,
-    }));
+    data.split("\n").forEach((item) => {
+      broadcast(aWss.clients, JSON.stringify({
+        event: "stderr",
+        output: data
+        // githubInfos: req.body,
+      }));
+    })
   });
   res.sendStatus(200);
 }
