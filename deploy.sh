@@ -38,7 +38,7 @@ else
     fi
   else  
     echo ">>> CLONING ${PROJECT_NAME}" 
-    git clone $GIT_URL
+    git clone $GIT_URL 2>&1
   fi
 
   echo ">>> BUILDING SERVICES" 
