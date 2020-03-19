@@ -5,19 +5,18 @@ files:
     destination: /home/ec2-user/projects/webhooks
 hooks:
   BeforeInstall:
-    - location: scripts/install_dependencies.sh
+    - location: scripts/before_install.sh
       timeout: 300
       runas: ec2-user
   AfterInstall:
-    - location: scripts/change_permissions.sh
+    - location: scripts/after_install.sh
       timeout: 300
       runas: ec2-user
   ApplicationStart:
-    - location: scripts/start_server.sh
-    - location: scripts/create_test_db.sh
+    - location: scripts/start.sh
       timeout: 300
       runas: ec2-user
   ApplicationStop:
-    - location: scripts/stop_server.sh
+    - location: scripts/stop.sh
       timeout: 300
       runas: ec2-user
