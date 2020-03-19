@@ -13,6 +13,7 @@ phases:
     commands:
       - echo Installing Yarn...
       - npm install -g yarn
+      - npm install -g react-scripts
   pre_build:
     commands:
       - echo Installing source NPM dependencies...
