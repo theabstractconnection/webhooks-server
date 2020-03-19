@@ -10,8 +10,10 @@ function App() {
     const initWS = /*async*/ () => {
       const socketProtocol =
         window.location.protocol === "https:" ? "wss:" : "ws:";
-      const echoSocketUrl = `${socketProtocol}//localhost:9000/socket`;
-      const socket = new WebSocket(echoSocketUrl);
+      const hostname = window.location.hostname
+      const socketUrl = `${socketProtocol}//${hostname}/socket`;
+      console.log(socketUrl)
+      const socket = new WebSocket(socketUrl);
       // const { data } = await axios.get(
       //   "https://www.cloudflare.com/cdn-cgi/trace"
       // );
