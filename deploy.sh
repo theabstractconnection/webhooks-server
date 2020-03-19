@@ -48,5 +48,6 @@ else
   make project_name=$PROJECT_NAME target=$TARGET service 2>&1
   
   echo ">>> SUCCCESS SERVICES STARTED"
+  exit 0
 fi
 
