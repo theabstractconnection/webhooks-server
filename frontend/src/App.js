@@ -41,7 +41,7 @@ function App() {
     <div className="App">
       <div id="eventlist">
         {events.map((value, index) => {
-          return <li key={index}>{value}</li>;
+          return <li key={index}>{JSON.stringify(value)}</li>;
         })}
       </div>
     </div>
