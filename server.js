@@ -99,7 +99,7 @@ function deploy(req, res, repositoryName, repositorySshUrl) {
 
   deploymentProcess.stdout.setEncoding("utf8");
   deploymentProcess.stdout.on("data", function(data) {
-    data.split("\n").forEach((item) => {
+    JSON.stringify({data}).split("\\\\n").forEach((item) => {
       broadcast(aWss.clients, JSON.stringify({
         event: "stdout",
         output: item
@@ -110,10 +110,10 @@ function deploy(req, res, repositoryName, repositorySshUrl) {
 
   deploymentProcess.stderr.setEncoding("utf8");
   deploymentProcess.stderr.on("data", function(data) {
-    data.split("\n").forEach((item) => {
+    JSON.stringify({data}).split("\\\\n").forEach((item) => {
       broadcast(aWss.clients, JSON.stringify({
         event: "stderr",
-        output: data
+        output: item
         // githubInfos: req.body,
       }));
     })
