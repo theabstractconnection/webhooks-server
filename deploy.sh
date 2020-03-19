@@ -19,8 +19,6 @@ then
   echo "!!! EXITING"
   exit 1
 else
-  echo ">>> CD INTO /home/${SERVER_USERNAME}" 
-  # cd "/home/${SERVER_USERNAME}"
   if [[ -d $PROJECT_NAME ]] 
   then
     echo ">>> CD INTO ${PROJECT_NAME}" 
@@ -39,6 +37,7 @@ else
   else  
     echo ">>> CLONING ${PROJECT_NAME}" 
     git clone $GIT_URL 2>&1
+    cd $PROJECT_NAME
   fi
 
   echo ">>> BUILDING SERVICES" 
