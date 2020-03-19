@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 // import axios from "axios";
 
 import "./App.css";
@@ -14,9 +14,9 @@ function App() {
       }
       const socketProtocol =
         window.location.protocol === "https:" ? "wss:" : "ws:";
-      const hostname = window.location.hostname
+      const hostname = window.location.hostname;
       const socketUrl = `${socketProtocol}//${hostname}/socket`;
-      console.log(socketUrl)
+      console.log(socketUrl);
       let ws = new WebSocket(socketUrl);
       socket.current = ws;
       // const { data } = await axios.get(
@@ -30,8 +30,8 @@ function App() {
       };
 
       ws.onmessage = function receiveMsg(msg) {
-        console.log("Message from server:", e.data);
-        setEvents(event => event.concat(e.data));
+        console.log("Message from server:", msg);
+        setEvents(event => event.concat(msg));
       };
     };
     initWS();
