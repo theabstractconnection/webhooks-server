@@ -92,7 +92,7 @@ function deploy(req, res, repositoryName, repositorySshUrl) {
         export GIT_URL="${repositorySshUrl}";
         export TARGET="${req.query.target || ""}";
         export SERVER_USERNAME="${SERVER_USERNAME}";
-        ./deploy.sh 
+        ./webhooks-server/deploy.sh 
       `
   ],
   {cwd: '/home/ec2-user/projects'});
