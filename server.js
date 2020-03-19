@@ -94,15 +94,16 @@ function deploy(req, res, repositoryName, repositorySshUrl) {
         export SERVER_USERNAME="${SERVER_USERNAME}";
         ./deploy.sh 
       `
-  ]);
+  ],
+  {cwd: '/home/ec2-user/projects'});
 
   deploymentProcess.stdout.setEncoding("utf8");
   deploymentProcess.stdout.on("data", function(data) {
     console.log("stdout: " + data);
     broadcast(aWss.clients, JSON.stringify({
       event: "stdout",
-      output: data,
-      githubInfos: req.body
+      output: data
+      // githubInfos: req.body
     }));
   });
 
@@ -110,10 +111,11 @@ function deploy(req, res, repositoryName, repositorySshUrl) {
   deploymentProcess.stderr.on("data", function(data) {
     broadcast(aWss.clients, JSON.stringify({
       event: "stderr",
-      output: data,
-      githubInfos: req.body,
+      output: data
+      // githubInfos: req.body,
     }));
   });
+  res.sendStatus(200);
 }
 
 app.listen(PORT, () => console.log(`Webhook server started on port ${PORT}`));

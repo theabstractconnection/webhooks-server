@@ -20,7 +20,7 @@ then
   exit 1
 else
   echo ">>> CD INTO /home/${SERVER_USERNAME}" 
-  cd "/home/${SERVER_USERNAME}"
+  # cd "/home/${SERVER_USERNAME}"
   if [[ -d $PROJECT_NAME ]] 
   then
     echo ">>> CD INTO ${PROJECT_NAME}" 
