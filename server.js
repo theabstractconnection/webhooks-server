@@ -86,6 +86,7 @@ function verifyPostData(req, res, next) {
 function deploy(req, res, repositoryName, repositorySshUrl) {
   console.log("DEPLOY");
   let deploymentProcessOutput = "";
+  let deploymentProcessError = "";
 
   const deploymentProcess = childProcess.spawn("/bin/bash", [
     "-c",
@@ -109,6 +110,7 @@ function deploy(req, res, repositoryName, repositorySshUrl) {
     }));
     deploymentProcessOutput += data;
     if (deploymentProcessOutput.includes("BUILDING SERVICES")) {
+      console.log("OK")
       res.sendStatus(200);
     }
   });
@@ -122,8 +124,10 @@ function deploy(req, res, repositoryName, repositorySshUrl) {
       output: data,
       githubInfos: req.body,
     }));
-    deploymentProcessOutput += data;
-    return res.sendStatus(500);
+    deploymentProcessError += data;
+    if (deploymentProcessError) {
+      res.sendStatus(500);
+    }
   });
 }
 

@@ -44,7 +44,7 @@ else
   echo ">>> BUILDING SERVICES" 
   make project_name=$PROJECT_NAME target=$TARGET build 2>&1
 
-  echo ">>> STARTING SERICES"
+  echo ">>> STARTING SERvICES"
   make project_name=$PROJECT_NAME target=$TARGET service 2>&1
   
   echo ">>> SUCCCESS SERVICES STARTED"
