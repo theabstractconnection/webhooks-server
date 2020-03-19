@@ -10,4 +10,4 @@ export NVM_DIR="$HOME/.nvm"
 
 echo ">>> STOP SCRIPT"
 cd "${APPLICATION_PATH}"
-pm2 stop "${APP_NAME}" || true
+/opt/pm2/pm2 stop "${APP_NAME}" || true

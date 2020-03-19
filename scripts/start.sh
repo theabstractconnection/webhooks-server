@@ -10,12 +10,12 @@ export NVM_DIR="$HOME/.nvm"
 
 echo ">>> START SCRIPT"
 cd "${APPLICATION_PATH}"
-pm2 describe "${APP_NAME}" > /dev/null
+/opt/pm2/pm2 describe "${APP_NAME}" > /dev/null
 RUNNING=$?
 if [ "${RUNNING}" -ne 0 ]; then
   echo ">>> PM2 START"
-  pm2 start server.js --name "${APP_NAME}"
+  /opt/pm2/pm2 start server.js --name "${APP_NAME}"
 else
   echo ">>> PM2 RESTART"
-  pm2 restart "${APP_NAME}"
+  /opt/pm2/pm2 restart "${APP_NAME}"
 fi;
