@@ -29,7 +29,7 @@ function App() {
         ws.send(`NEW client conexion`);
       };
 
-      ws.onmessage = (e) {
+      ws.onmessage = (e) => {
         console.log("Message from server:", e.data);
         setEvents(event => event.concat(JSON.stringify(e.data)));
       };
