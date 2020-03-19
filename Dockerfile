@@ -11,6 +11,12 @@ RUN apk --no-cache add shadow && \
 RUN find / -group 1000 -exec chgrp -h 2000 {} \;
 RUN find / -user 1000 -exec chown -h 2000 {} \;
 
+FROM node:13.10.1-alpine as react-build
+WORKDIR /app
+COPY ./frontend ./
+RUN yarn
+RUN yarn build
+
 FROM scratch as user
 COPY --from=base . .
 ARG HOST_UID=${HOST_UID:-4000}
@@ -25,3 +31,4 @@ WORKDIR /home/${HOST_USER}
 COPY package*.json ./
 RUN yarn
 COPY . .
+COPY --from=react-build /app/build /home/${HOST_USER}/${PROJECT_NAME}/frontend/build

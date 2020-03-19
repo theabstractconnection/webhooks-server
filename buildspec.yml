@@ -19,6 +19,8 @@ phases:
   build:
     commands:
       - yarn
+      - cd frontend
+      - yarn run build
   post_build:
     commands:
       - echo Build completed on `date`
@@ -32,4 +34,5 @@ artifacts:
     - package.json
     - node_modules/**/*
     - server.js
+    - frontend/build/**/*
     - deploy.sh

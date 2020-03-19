@@ -28,6 +28,7 @@ services:
       args:
         - HOST_UID=${HOST_UID:-4000}
         - HOST_USER=${HOST_USER:-nodummy}
+        - PROJECT_NAME=${PROJECT_NAME}
     # Map volumes form host to container
     volumes:
       - ${PWD:-.}:/home/${HOST_USER}/${PROJECT_NAME}
