@@ -29,9 +29,9 @@ function App() {
         ws.send(`NEW client conexion`);
       };
 
-      ws.onmessage = function receiveMsg(msg) {
-        console.log("Message from server:", msg);
-        setEvents(event => event.concat(msg));
+      ws.onmessage = (e) {
+        console.log("Message from server:", e.data);
+        setEvents(event => event.concat(JSON.stringify(e.data)));
       };
     };
     initWS();
@@ -41,7 +41,7 @@ function App() {
     <div className="App">
       <div id="eventlist">
         {events.map((value, index) => {
-          return <li key={index}>{JSON.stringify(value)}</li>;
+          return <li key={index}>{value}</li>;
         })}
       </div>
     </div>
