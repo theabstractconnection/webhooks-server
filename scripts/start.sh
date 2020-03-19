@@ -5,14 +5,17 @@ APPLICATION_PATH="/home/ec2-user/projects/${APP_NAME}/"
 echo "ENV : APP_NAME = ${APP_NAME}"
 echo "ENV : APPLICATION_PATH = ${APPLICATION_PATH}"
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
 echo ">>> START SCRIPT"
 cd "${APPLICATION_PATH}"
-/opt/pm2/pm2 describe "${APP_NAME}" > /dev/null
+pm2 describe "${APP_NAME}" > /dev/null
 RUNNING=$?
 if [ "${RUNNING}" -ne 0 ]; then
   echo ">>> PM2 START"
-  /opt/pm2/pm2 start server.js --name "${APP_NAME}"
+  pm2 start server.js --name "${APP_NAME}"
 else
   echo ">>> PM2 RESTART"
-  /opt/pm2/pm2 restart "${APP_NAME}"
+  pm2 restart "${APP_NAME}"
 fi;
