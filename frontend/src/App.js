@@ -4,29 +4,34 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
+  const socket = useRef(null);
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
     const initWS = /*async*/ () => {
+      if (socket.current) {
+        return;
+      }
       const socketProtocol =
         window.location.protocol === "https:" ? "wss:" : "ws:";
       const hostname = window.location.hostname
       const socketUrl = `${socketProtocol}//${hostname}/socket`;
       console.log(socketUrl)
-      const socket = new WebSocket(socketUrl);
+      let ws = new WebSocket(socketUrl);
+      socket.current = ws;
       // const { data } = await axios.get(
       //   "https://www.cloudflare.com/cdn-cgi/trace"
       // );
       // const ip = data.split("ip=")[1].split("ts=")[0];
       // console.log(ip);
-      socket.onopen = () => {
+      ws.onopen = () => {
         console.log("open");
-        socket.send(`NEW client conexion`);
+        ws.send(`NEW client conexion`);
       };
 
-      socket.onmessage = e => {
+      ws.onmessage = function receiveMsg(msg) {
         console.log("Message from server:", e.data);
-        setEvents([...events, e.data]);
+        setEvents(event => event.concat(e.data));
       };
     };
     initWS();
