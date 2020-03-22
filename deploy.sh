@@ -16,12 +16,6 @@ GIT_URL=$(echo $GIT_URL | tr -d '\r')
 TARGET=$(echo $TARGET | tr -d '\r')
 DEPLOY_TYPE=$(echo $DEPLOY_TYPE | tr -d '\r')
 
-
-str1="Hello Bash"
-str2="Hello Bash "
- 
-
-
 echo $SERVER_USERNAME
 echo $PROJECT_NAME
 echo $GIT_URL
@@ -55,9 +49,8 @@ else
     cd $PROJECT_NAME
   fi
 
-  if [ "$DEPLOY_TYPE" == "update" ]
+  if [ "$DEPLOY_TYPE" == "initialize" ]
   then
-    DEPLOY_TYPE=update
     echo "☠☠☠ PULLING SERVICE'S IMAGES" 
     make project_name=$PROJECT_NAME target=$TARGET pullimages 2>&1
   fi
@@ -68,7 +61,7 @@ else
   echo "☠☠☠ STARTING SERVICES"
   make project_name=$PROJECT_NAME target=$TARGET service 2>&1
   
-  if [ "$DEPLOY_TYPE" == "update" ]
+  if [ "$DEPLOY_TYPE" == "initialize" ]
   then
     echo "☠☠☠ POST INSTALL SCRIPT" 
     make project_name=$PROJECT_NAME target=$TARGET postinstall 2>&1
