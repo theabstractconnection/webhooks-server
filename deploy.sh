@@ -1,52 +1,80 @@
 #!/bin/bash
-TARGET=${TARGET:=main}
+TARGET=${TARGET:-main}
 
 set -e
+
+if [[ -d $PROJECT_NAME ]]
+then
+  DEPLOY_TYPE="update"
+else
+  DEPLOY_TYPE="initialize"
+fi
 
 SERVER_USERNAME=$(echo $SERVER_USERNAME | tr -d '\r')
 PROJECT_NAME=$(echo $PROJECT_NAME | tr -d '\r')
 GIT_URL=$(echo $GIT_URL | tr -d '\r')
 TARGET=$(echo $TARGET | tr -d '\r')
+DEPLOY_TYPE=$(echo $DEPLOY_TYPE | tr -d '\r')
+
+
+str1="Hello Bash"
+str2="Hello Bash "
+ 
+
 
 echo $SERVER_USERNAME
 echo $PROJECT_NAME
 echo $GIT_URL
 echo $TARGET
+echo $DEPLOY_TYPE
 
 if [[ -z "${SERVER_USERNAME}" ]] || [[ -z "${PROJECT_NAME}" ]] || [[ -z "${GIT_URL}" ]]
 then
-  echo ">>> REQUIRED VARIABLES ARE NOT PRESENT"
+  echo "☠☠☠ REQUIRED VARIABLES ARE NOT PRESENT"
   echo "!!! EXITING"
   exit 1
 else
   if [[ -d $PROJECT_NAME ]] 
   then
-    echo ">>> CD INTO ${PROJECT_NAME}" 
+    echo "☠☠☠ CD INTO ${PROJECT_NAME}" 
     cd $PROJECT_NAME
 
-    echo ">>> CHECK GIT STATUS" 
+    echo "☠☠☠ CHECK GIT STATUS" 
     if [ -z "$(git status --porcelain)" ]; then 
-      echo ">>>>>> WORKING DIRECTORY CLEAN" 
-      echo ">>> PULL FROM MASTER" 
+      echo "☠☠☠☠☠☠ WORKING DIRECTORY CLEAN" 
+      echo "☠☠☠ PULL FROM MASTER" 
       git pull origin master --progress
     else 
-      echo ">>>>>> UNCOMMITED CHANGES"
+      echo "☠☠☠☠☠☠ UNCOMMITED CHANGES"
       echo "!!!!!! EXITING"
       exit 1
     fi
   else  
-    echo ">>> CLONING ${PROJECT_NAME}" 
+    echo "☠☠☠ CLONING ${PROJECT_NAME}" 
     git clone $GIT_URL 2>&1
     cd $PROJECT_NAME
   fi
 
-  echo ">>> BUILDING SERVICES" 
+  if [ "$DEPLOY_TYPE" == "update" ]
+  then
+    DEPLOY_TYPE=update
+    echo "☠☠☠ PULLING SERVICE'S IMAGES" 
+    make project_name=$PROJECT_NAME target=$TARGET pullimages 2>&1
+  fi
+
+  echo "☠☠☠ BUILDING SERVICES" 
   make project_name=$PROJECT_NAME target=$TARGET build 2>&1
 
-  echo ">>> STARTING SERvICES"
+  echo "☠☠☠ STARTING SERVICES"
   make project_name=$PROJECT_NAME target=$TARGET service 2>&1
   
-  echo ">>> SUCCCESS SERVICES STARTED"
+  if [ "$DEPLOY_TYPE" == "update" ]
+  then
+    echo "☠☠☠ POST INSTALL SCRIPT" 
+    make project_name=$PROJECT_NAME target=$TARGET postinstall 2>&1
+  fi
+  
+  echo "☠☠☠ SUCCCESS SERVICES STARTED"
   exit 0
 fi
 
