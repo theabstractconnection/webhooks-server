@@ -18,5 +18,5 @@ if [ "${RUNNING}" -ne 0 ]; then
   echo "☠☠☠ NOT RUNNING"
 else
   echo "☠☠☠ PM2 STOP"
-  /opt/bin/pm2 stop /home/ec2-user/envs/ecosystem.config.js --only "${APP_NAME}" || true
+  /opt/bin/pm2 stop "${APP_NAME}"
 fi;
