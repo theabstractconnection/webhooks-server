@@ -12,4 +12,4 @@ export NVM_DIR="$HOME/.nvm"
 
 echo "☠☠☠ PM2 STOP"
 cd "${APPLICATION_PATH}"
-/opt/bin/pm2 stop "${APP_NAME}" || true
+/opt/bin/pm2 stop ecosystem.config.js --only "${APP_NAME}"

@@ -1,2 +1,2 @@
 #!/bin/bash
-echo ">>> BEFORE INSTALL SCRIPT"
+echo "☠☠☠ BEFORE INSTALL SCRIPT"
