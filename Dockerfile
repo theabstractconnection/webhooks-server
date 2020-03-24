@@ -30,6 +30,5 @@ WORKDIR /home/${HOST_USER}
 
 COPY package*.json ./
 RUN npm install
-RUN yarn
 COPY . .
 COPY --from=react-build /app/build /home/${HOST_USER}/${PROJECT_NAME}/frontend/build
