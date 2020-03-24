@@ -13,9 +13,14 @@ RUN find / -user 1000 -exec chown -h 2000 {} \;
 
 FROM node:13.10.1-alpine as react-build
 WORKDIR /app
-COPY ./frontend ./
+COPY ./frontend .
 RUN npm install
 RUN npm run build
+
+FROM node:13.10.1-alpine as server-build
+WORKDIR /app
+COPY . .
+RUN npm install
 
 FROM scratch as user
 COPY --from=base . .
@@ -27,8 +32,5 @@ RUN [ "${HOST_USER}" == "root" ] || \
 
 USER ${HOST_USER}
 WORKDIR /home/${HOST_USER}
-
-COPY package*.json ./
-RUN npm install
-COPY . .
-COPY --from=react-build /app/build /home/${HOST_USER}/${PROJECT_NAME}/frontend/build
+COPY --from=server-build /app /home/${HOST_USER}
+COPY --from=react-build /app/build /home/${HOST_USER}/frontend/build
