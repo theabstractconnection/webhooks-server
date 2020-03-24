@@ -14,8 +14,8 @@ RUN find / -user 1000 -exec chown -h 2000 {} \;
 FROM node:13.10.1-alpine as react-build
 WORKDIR /app
 COPY ./frontend ./
-RUN yarn
-RUN yarn build
+RUN npm install
+RUN npm run build
 
 FROM scratch as user
 COPY --from=base . .
