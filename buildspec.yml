@@ -9,7 +9,7 @@ env:
 phases:
   install:
     runtime-versions:
-      nodejs: 13.10.1  
+      nodejs: 12
     commands:
       - echo Install
   pre_build:
