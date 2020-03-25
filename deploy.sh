@@ -25,7 +25,7 @@ echo $DEPLOY_TYPE
 echo "☠☠☠ UPDATING DOTENVS REPO"
 cd ${HOME}/dotenvs
 git pull origin master --progress
-cd ${HOME}/projects/webhooks-server
+cd ${HOME}/projects
 
 if [[ -z "${SERVER_USERNAME}" ]] || [[ -z "${PROJECT_NAME}" ]] || [[ -z "${GIT_URL}" ]]
 then
