@@ -42,7 +42,7 @@ app.post('/', verifyPostData, (req, res) => {
       JSON.stringify({
         event: 'deploy',
         githubInfos:  req.body,
-        webhookDeliveryId: req.headers[deliveryHeaderName]
+        webhookDeliveryId: req.get(deliveryHeaderName)
       })
     )
     deploy(req, res, repositoryName, repositorySshUrl)
@@ -111,7 +111,7 @@ function deploy(req, res, repositoryName, repositorySshUrl) {
           type: 'stdout',
           output: data,
         },
-        webhookDeliveryId: req.headers[deliveryHeaderName]
+        webhookDeliveryId: req.get(deliveryHeaderName)
       })
     )
   })
@@ -126,7 +126,7 @@ function deploy(req, res, repositoryName, repositorySshUrl) {
           type: 'stderr',
           output: data,
         },
-        webhookDeliveryId: req.headers[deliveryHeaderName]
+        webhookDeliveryId: req.get(deliveryHeaderName)
       })
     )
   })
