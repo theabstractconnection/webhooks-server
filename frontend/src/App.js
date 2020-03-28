@@ -6,9 +6,8 @@ import './App.css'
 
 function App() {
   const socket = useRef(null)
-  const timer = useRef(null)
-  let timeout = 2000
 
+  const [messages, setMessages] = useState([])
   const [deploys, setDeploys] = useState([
     // {
     //   deploy: {
@@ -27,51 +26,33 @@ function App() {
     const socketUrl = `${socketProtocol}//${hostname}${
       port ? ':' + port : ''
     }/socket`
-
-    console.log(socketUrl)
     return socketUrl
   }
 
-  const checkIsAlive = (ws, initWS) => {
-    if (!ws || ws.readyState === WebSocket.CLOSED) initWS()
-  }
+  // const onDeployMsg = msg => {
+  //   console.log(msg.githubInfos)
+  //   setDeploys(oldDeploys => [
+  //     ...oldDeploys,
+  //     {
+  //       deploy: {
+  //         data: msg.githubInfos,
+  //         log: [],
+  //         status: 'pending',
+  //       },
+  //     },
+  //   ])
+  //   console.log(deploys)
+  // }
 
-  const keepAlive = ws => {
-    if (ws && ws.readyState === WebSocket.OPEN) {
-      ws.send('')
-    }
-    timer.current = setTimeout(keepAlive, timeout)
-  }
-  const cancelKeepAlive = () => {
-    if (timer.current) {
-      clearTimeout(timer.current)
-    }
-  }
-
-  const onDeployMsg = msg => {
-    console.log(msg.githubInfos)
-    setDeploys(oldDeploys => [
-      ...oldDeploys,
-      {
-        deploy: {
-          data: msg.githubInfos,
-          log: [],
-          status: 'pending',
-        },
-      }
-    ])
-    console.log(deploys)
-  }
-
-  const onLogMsg = msg => {
-    setDeploys(oldDeploys =>
-      oldDeploys.map(deploy =>
-        deploy.data.webhookDeliveryId === msg.webhookDeliveryId
-          ? { ...deploy, log: deploy.log.concat([msg.data]) }
-          : deploy
-      )
-    )
-  }
+  // const onLogMsg = msg => {
+  //   setDeploys(oldDeploys =>
+  //     oldDeploys.map(deploy =>
+  //       deploy.data.webhookDeliveryId === msg.webhookDeliveryId
+  //         ? { ...deploy, log: deploy.log.concat([msg.data]) }
+  //         : deploy
+  //     )
+  //   )
+  // }
 
   useEffect(() => {
     const initWS = () => {
@@ -80,16 +61,12 @@ function App() {
       }
 
       let ws = new WebSocket(buildSocketUrl())
-      let connectInterval
 
       socket.current = ws
 
       ws.onopen = () => {
         console.log('Socket is open :)')
         ws.send(`NEW client conexion`)
-        timeout = 2000
-        clearTimeout(connectInterval)
-        keepAlive(ws)
       }
 
       ws.onclose = e => {
@@ -100,12 +77,6 @@ function App() {
           )} second.`,
           e.reason
         )
-        timeout = timeout + timeout
-        connectInterval = setTimeout(
-          checkIsAlive(ws, initWS),
-          Math.min(10000, timeout)
-        )
-        cancelKeepAlive()
         socket.current = null
       }
 
@@ -121,15 +92,27 @@ function App() {
       ws.onmessage = e => {
         let msg = JSON.parse(e.data)
         console.log(msg)
-        if (msg.event === 'deploy') {
-          onDeployMsg(msg)
-        } else if (msg.event === 'log') {
-          onLogMsg(msg)
-        }
+        setMessages([...messages, msg])
       }
     }
     initWS()
   }, [])
+
+  useEffect(() => {
+    setDeploys(
+      messages
+        .filter(m => m.event === 'deploy')
+        .map(m => {
+          return {
+            deploy: {
+              data: m.githubInfos,
+              log: [],
+              status: '',
+            },
+          }
+        })
+    )
+  }, [messages])
 
   return (
     <div className="App">
