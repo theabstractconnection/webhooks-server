@@ -41,7 +41,8 @@ app.post('/', verifyPostData, (req, res) => {
       aWss.clients,
       JSON.stringify({
         event: 'deploy',
-        githubInfos:  req.body
+        githubInfos:  req.body,
+        headers: req.headers
       })
     )
     deploy(req, res, repositoryName, repositorySshUrl)
@@ -78,8 +79,6 @@ function verifyPostData(req, res, next) {
       `Request body digest (${digest}) did not match ${sigHeaderName} (${checksum})`
     )
   }
-  // add webhookDeliveryId from headers
-  req.body.webhookDeliveryId = req.get[deliveryHeaderName]
   return next()
 }
 
