@@ -49,34 +49,28 @@ function App() {
   }
 
   const onDeployMsg = msg => {
-    msg = JSON.parse(msg)
-    console.log(msg)
-    if (msg.event === 'deploy') {
-      setDeploys(oldDeploys => [
-        ...oldDeploys,
-        {
-          deploy: {
-            data: msg.githubInfos,
-            log: [],
-            status: 'pending',
-          },
+    console.log(msg.githubInfos)
+    setDeploys(oldDeploys => [
+      ...oldDeploys,
+      {
+        deploy: {
+          data: msg.githubInfos,
+          log: [],
+          status: 'pending',
         },
-      ])
-      console.log(deploys)
-    }
-  }
-  const onLogMsg = msg => {
+      }
+    ])
     console.log(deploys)
-    msg = JSON.parse(msg)
-    if (msg.event === 'log') {
-      setDeploys(deploys =>
-        deploys.map(deploy =>
-          deploy.webhookDeliveryId === msg.webhookDeliveryId
-            ? { ...deploy, log: deploy.log.concat([msg.data]) }
-            : deploy
-        )
+  }
+
+  const onLogMsg = msg => {
+    setDeploys(oldDeploys =>
+      oldDeploys.map(deploy =>
+        deploy.data.webhookDeliveryId === msg.webhookDeliveryId
+          ? { ...deploy, log: deploy.log.concat([msg.data]) }
+          : deploy
       )
-    }
+    )
   }
 
   useEffect(() => {
@@ -125,10 +119,13 @@ function App() {
       }
 
       ws.onmessage = e => {
-        let msg = e.data
-        console.log(e.data)
-        onDeployMsg(msg)
-        onLogMsg(msg)
+        let msg = JSON.parse(e.data)
+        console.log(msg)
+        if (msg.event === 'deploy') {
+          onDeployMsg(msg)
+        } else if (msg.event === 'log') {
+          onLogMsg(msg)
+        }
       }
     }
     initWS()

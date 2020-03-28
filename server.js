@@ -10,6 +10,7 @@ var app = expressWsExpress.app
 const aWss = expressWsExpress.getWss()
 
 const sigHeaderName = 'X-Hub-Signature'
+const deliveryHeaderName = 'X-GitHub-Delivery'
 
 const API_SECRET = process.env.API_SECRET || ''
 const GITHUB_USERNAME = process.env.GITHUB_USERNAME || ''
@@ -40,10 +41,7 @@ app.post('/', verifyPostData, (req, res) => {
       aWss.clients,
       JSON.stringify({
         event: 'deploy',
-        githubInfos: {
-          ...req.body,
-          webhookDeliveryId: req.get['X-GitHub-Delivery'],
-        },
+        githubInfos:  req.body
       })
     )
     deploy(req, res, repositoryName, repositorySshUrl)
@@ -80,6 +78,8 @@ function verifyPostData(req, res, next) {
       `Request body digest (${digest}) did not match ${sigHeaderName} (${checksum})`
     )
   }
+  // add webhookDeliveryId from headers
+  req.body.webhookDeliveryId = req.get[deliveryHeaderName]
   return next()
 }
 
@@ -112,7 +112,7 @@ function deploy(req, res, repositoryName, repositorySshUrl) {
           type: 'stdout',
           output: data,
         },
-        webhookDeliveryId: req.get['X-GitHub-Delivery'],
+        webhookDeliveryId: req.body.webhookDeliveryId,
       })
     )
   })
@@ -127,7 +127,7 @@ function deploy(req, res, repositoryName, repositorySshUrl) {
           type: 'stderr',
           output: data,
         },
-        webhookDeliveryId: req.get['X-GitHub-Delivery'],
+        webhookDeliveryId: req.body.webhookDeliveryId,
       })
     )
   })
