@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 
-import WebHook from '@components/Deploy';
+import Deploy from './components/Deploy';
 
 import "./App.css";
 
 function App() {
   const socket = useRef(null);
-  const timer = useReff(null);
+  const timer = useRef(null);
 
   const [deploys, setDeploys] = useState([{
     deploy: {
@@ -54,11 +54,11 @@ function App() {
   const onLogMsg = (msg) => {
     if ( msg.event === "log" ) {
       setDeploys(deploys => 
-        deploys.map((deploy) => {
+        deploys.map((deploy) => 
           deploy.webhookDeliveryId === msg.webhookDeliveryId 
             ? { ...deploy, log: deploy.log.concat(msg.data) }
             : deploy
-        })
+        )
       );
     }
   };

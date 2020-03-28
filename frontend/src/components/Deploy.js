@@ -1,9 +1,9 @@
 import React/*, { useState, useEffect, useRef }*/ from "react";
 
-function Deploy() {
+const Deploy = (props) => {
   return (
     <div id="Deploy">
-      {JSON.stringify(deploy)}
+      {JSON.stringify(props.deploy)}
     </div>
   )
 }
