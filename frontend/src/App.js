@@ -29,7 +29,7 @@ function App() {
 
   const keepAlive = (ws) => { 
       const timeout = 20000;  
-      if (ws.readyState == ws.OPEN) {  
+      if (ws.readyState === ws.OPEN) {  
           ws.send('');  
       } 
       timer.current = setTimeout(keepAlive, timeout);  

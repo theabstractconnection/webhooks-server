@@ -1,6 +1,13 @@
 import React/*, { useState, useEffect, useRef }*/ from "react";
 import PropTypes from 'prop-types';
 
+const Deploy = (props) => {
+  return (
+    <div id="Deploy">
+      {JSON.stringify(props.deploy)}
+    </div>
+  )
+}
 
 Deploy.propTypes = {
   deploy: PropTypes.shape({
@@ -9,13 +16,5 @@ Deploy.propTypes = {
     status: PropTypes.string.isRequired
   }).isRequired
 };
-
-const Deploy = (props) => {
-  return (
-    <div id="Deploy">
-      {JSON.stringify(props.deploy)}
-    </div>
-  )
-}
 
 export default Deploy;
