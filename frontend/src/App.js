@@ -70,13 +70,7 @@ function App() {
       }
 
       ws.onclose = e => {
-        console.log(
-          `Socket is closed. Reconnect will be attempted in ${Math.min(
-            10000 / 1000,
-            (timeout + timeout) / 1000
-          )} second.`,
-          e.reason
-        )
+        console.log('Socket is closed', e.reason)
         socket.current = null
       }
 
