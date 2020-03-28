@@ -8,13 +8,15 @@ function App() {
   const socket = useRef(null);
   const timer = useRef(null);
 
-  const [deploys, setDeploys] = useState([{
-    deploy: {
-      data:{},
-      log:[],
-      status: ""
-    }
-  }]);
+  const [deploys, setDeploys] = useState([
+    // {
+    //   deploy: {
+    //     data:{},
+    //     log:[],
+    //     status: ""
+    //   }
+    // }
+  ]);
   
   const buildSocketUrl = () => {
     const socketProtocol =
@@ -29,12 +31,12 @@ function App() {
       const timeout = 20000;  
       if (ws.readyState == ws.OPEN) {  
           ws.send('');  
-      }
-      timer = setTimeout(keepAlive, timeout);  
+      } 
+      timer.current = setTimeout(keepAlive, timeout);  
   }  
   const cancelKeepAlive = () => {  
-      if (timer) {  
-          clearTimeout(timer);  
+      if (timer.current) {  
+          clearTimeout(timer.current);  
       }  
   }
 
