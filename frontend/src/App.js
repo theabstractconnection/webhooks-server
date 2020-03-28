@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-import WebHook from '@component/WebHook';
+import WebHook from '@components/Deploy';
 
 import "./App.css";
 
