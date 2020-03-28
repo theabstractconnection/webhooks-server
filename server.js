@@ -28,13 +28,6 @@ app.use((err, req, res, next) => {
 
 app.ws("/socket", function(ws, req) {
   console.log("Total connected clients:", aWss.clients.size);
-
-  ws.on("message", function(msg) {
-    console.log(msg);
-    aWss.clients.forEach(function (client) {
-      client.send(msg);
-    });
-  });
 });
 
 app.post("/", verifyPostData, (req, res) => {
@@ -44,9 +37,12 @@ app.post("/", verifyPostData, (req, res) => {
   const repositorySshUrl = req.body.repository.ssh_url;
 
   if (sender === GITHUB_USERNAME && organization === GITHUB_ORGANIZATION) {
+    githubInfos = req.boy;
+    githubInfos["webhookDeliveryId"] = req.get["X-GitHub-Delivery"];
+
     broadcast(aWss.clients, JSON.stringify({
       event: "deploy",
-      githubInfos: req.body
+      githubInfos
     }));
     deploy(req, res, repositoryName, repositorySshUrl);
     res.sendStatus(200);
@@ -104,18 +100,24 @@ function deploy(req, res, repositoryName, repositorySshUrl) {
   deploymentProcess.stdout.on("data", function(data) {
     console.log("stdout: " + data);
     broadcast(aWss.clients, JSON.stringify({
-      event: "stdout",
-      output: data
-      // githubInfos: req.body
+      event: "log",
+      data: {
+        type : "stdout",
+        output: data,
+      },
+      webhookDeliveryId: req.get["X-GitHub-Delivery"]
     }));
   });
 
   deploymentProcess.stderr.setEncoding("utf8");
   deploymentProcess.stderr.on("data", function(data) {
     broadcast(aWss.clients, JSON.stringify({
-      event: "stderr",
-      output: data
-      // githubInfos: req.body,
+      event: "log",
+      data: {
+        type : "stderr",
+        output: data,
+      },
+      webhookDeliveryId: req.get["X-GitHub-Delivery"],
     }));
   });
   res.sendStatus(200);
