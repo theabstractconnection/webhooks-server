@@ -22,7 +22,9 @@ function App() {
     const socketProtocol =
       window.location.protocol === "https:" ? "wss:" : "ws:";
     const hostname = window.location.hostname;
-    const socketUrl = `${socketProtocol}//${hostname}/socket`
+    const port = window.location.port;
+    const socketUrl = `${socketProtocol}//${hostname}${port ? ':' + port : ''}/socket`
+
     console.log(socketUrl);
     return socketUrl;
   }
@@ -84,6 +86,7 @@ function App() {
 
       ws.onmessage = (e) => {
         let msg = e.data;
+        console.log(e.data);
         onDeployMsg(msg);
         onLogMsg(msg);
       };
