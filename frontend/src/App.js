@@ -50,16 +50,18 @@ function App() {
 
   const onDeployMsg = msg => {
     msg = JSON.parse(msg)
+    console.log(msg)
     if (msg.event === 'deploy') {
-      setDeploys(deploys =>
-        deploys.concat([{
+      setDeploys(oldDeploys => [
+        ...oldDeploys,
+        {
           deploy: {
             data: msg.githubInfos,
             log: [],
             status: 'pending',
           },
-        }])
-      )
+        },
+      ])
       console.log(deploys)
     }
   }
