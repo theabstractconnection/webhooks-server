@@ -47,6 +47,7 @@ function App() {
   }
 
   const onDeployMsg = (msg) => {
+    msg = JSON.parse(msg)
     if (msg.event === 'deploy'){
       setDeploys(deploys => 
         deploys.concat({
@@ -60,6 +61,7 @@ function App() {
     } 
   };
   const onLogMsg = (msg) => {
+    msg = JSON.parse(msg)
     if ( msg.event === "log" ) {
       setDeploys(deploys => 
         deploys.map((deploy) => 
