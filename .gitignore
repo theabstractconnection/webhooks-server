@@ -4,3 +4,4 @@ ecosystem.config.js
 frontend/build/*
 !frontend/build/.gitkeep 
 yarn.*
+example-hook-payload.json
