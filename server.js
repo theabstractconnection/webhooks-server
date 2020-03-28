@@ -41,7 +41,7 @@ app.post('/', verifyPostData, (req, res) => {
       JSON.stringify({
         event: 'deploy',
         githubInfos: {
-          ...githubInfos,
+          ...req.body,
           webhookDeliveryId: req.get['X-GitHub-Delivery'],
         },
       })
