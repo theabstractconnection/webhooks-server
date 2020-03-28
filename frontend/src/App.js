@@ -52,23 +52,25 @@ function App() {
     msg = JSON.parse(msg)
     if (msg.event === 'deploy') {
       setDeploys(deploys =>
-        deploys.concat({
+        deploys.concat([{
           deploy: {
             data: msg.githubInfos,
             log: [],
             status: 'pending',
           },
-        })
+        }])
       )
+      console.log(deploys)
     }
   }
   const onLogMsg = msg => {
+    console.log(deploys)
     msg = JSON.parse(msg)
     if (msg.event === 'log') {
       setDeploys(deploys =>
         deploys.map(deploy =>
           deploy.webhookDeliveryId === msg.webhookDeliveryId
-            ? { ...deploy, log: deploy.log.concat(msg.data) }
+            ? { ...deploy, log: deploy.log.concat([msg.data]) }
             : deploy
         )
       )
@@ -87,6 +89,7 @@ function App() {
       socket.current = ws
 
       ws.onopen = () => {
+        console.log('Socket is open :)')
         ws.send(`NEW client conexion`)
         timeout = 2000
         clearTimeout(connectInterval)
