@@ -7,6 +7,7 @@ import "./App.css";
 function App() {
   const socket = useRef(null);
   const timer = useRef(null);
+  let timeout = 2000;  
 
   const [deploys, setDeploys] = useState([
     // {
@@ -29,17 +30,20 @@ function App() {
     return socketUrl;
   }
 
+  const checkIsAlive = (ws, initWS) => {
+    if (!ws || ws.readyState === WebSocket.CLOSED) initWS();
+  };
+
   const keepAlive = (ws) => { 
-      const timeout = 20000;  
-      if (ws.readyState === ws.OPEN) {  
-          ws.send('');  
-      } 
-      timer.current = setTimeout(keepAlive, timeout);  
+    if (ws && ws.readyState === WebSocket.OPEN) {  
+      ws.send('');  
+    } 
+    timer.current = setTimeout(keepAlive, timeout);  
   }  
   const cancelKeepAlive = () => {  
-      if (timer.current) {  
-          clearTimeout(timer.current);  
-      }  
+    if (timer.current) {  
+      clearTimeout(timer.current);  
+    }  
   }
 
   const onDeployMsg = (msg) => {
@@ -74,14 +78,38 @@ function App() {
       }
 
       let ws = new WebSocket(buildSocketUrl());
+      let connectInterval;
+
       socket.current = ws;
 
       ws.onopen = () => {
+        ws.send(`NEW client conexion`)
+        timeout = 2000;
+        clearTimeout(connectInterval);
         keepAlive(ws);
       };
 
-      ws.onclose = () => {
+      ws.onclose = (e) => {
+        console.log(
+          `Socket is closed. Reconnect will be attempted in ${Math.min(
+              10000 / 1000,
+              (timeout + timeout) / 1000
+          )} second.`,
+          e.reason
+        );
+        timeout = timeout + timeout;
+        connectInterval = setTimeout(checkIsAlive(ws, initWS), Math.min(10000, timeout));
         cancelKeepAlive();
+        socket.current = null;
+      };
+
+      ws.onerror = (err) => {
+        console.error(
+            "Socket encountered error: ",
+            err.message,
+            "Closing socket"
+        );
+        ws.close();
       };
 
       ws.onmessage = (e) => {
