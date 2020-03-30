@@ -37,7 +37,7 @@ else
     echo "☠☠☠ CLONING ${PROJECT_NAME}" 
     git clone $GIT_URL 2>&1
     cd $PROJECT_NAME
-    echo "☠☠☠ LINKING ENV FILE" 
+    echo "☠☠☠ LINKING ENV FILES" 
     envs -g
   fi
 
@@ -62,7 +62,11 @@ else
     make project_name=$PROJECT_NAME target=$TARGET pullimages 2>&1
   fi
 
-  echo "☠☠☠ BUILDING SERVICES" 
+  echo "☠☠☠ UPDATING ENV" 
+  envs -s prod.docker
+  envs -r
+
+  echo "☠☠☠ BUILDING SERVICES"
   make project_name=$PROJECT_NAME target=$TARGET build 2>&1
 
   echo "☠☠☠ STARTING SERVICES"
