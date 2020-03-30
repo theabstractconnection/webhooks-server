@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 APP_NAME="webhooks-server"
 APPLICATION_PATH="/home/ec2-user/projects/${APP_NAME}/"
 

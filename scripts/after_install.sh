@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 echo "☠☠☠ AFTER INSTALL SCRIPT"
 source $HOME/.bashrc
 source $HOME/dotfiles/bash_functions
@@ -13,6 +13,4 @@ ln -s $HOME/dotenvs/ecosystem.config.js $HOME/projects/webhooks-server/ecosystem
 
 echo "☠ PULLING & STARTING MONGODB CONTAINER"
 envs -s prod.docker
-envs -r
-target=db make pullimages
-target=db make service
+target=db make pullimages service
