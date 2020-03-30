@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import Deployment from './models/deployment'
+import Deployment from './domain/deployment/deployment.model'
 
 const {
   MONGO_DB_HOSTNAME,
