@@ -17,7 +17,7 @@ services:
       - GITHUB_ORGANIZATION=${GITHUB_ORGANIZATION}
       - SERVER_USERNAME=${SERVER_USERNAME}
       - MONGO_DB_HOSTNAME=${MONGO_DB_HOSTNAME:-localhost}
-      - MONGO_DB_PORT=27017 # map to the container port
+      - MONGO_DB_PORT=${MONGO_DB_PORT:-27017}
       - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
@@ -51,7 +51,7 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
     ports:
-      - '${MONGO_DB_PORT:-27017}:27017' # port mapping only to acces db from localhost
+      - '${MONGO_DB_PORT_MAPPING:-27017}:27017'
     volumes:
       - db-data:/data/db
     # networks:
