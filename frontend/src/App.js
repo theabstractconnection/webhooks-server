@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useRef, useMemo } from 'react'
 import useWebSocket, { ReadyState } from 'react-use-websocket'
 import axios from 'axios'
 
@@ -33,7 +33,7 @@ function App() {
     const fetchDeployments = async () => {
       const { data } = await axios.get('/deployment/get')
       setDeployments(data.deployments)
-      console.log(data.deployments)
+      // console.log(data.deployments)
     }
     fetchDeployments()
   }, [])
@@ -43,7 +43,7 @@ function App() {
       const lastMessageData = JSON.parse(lastMessage.data)
       // const currentWebsocketUrl = getWebSocket().url
       // console.log('received a message from ', currentWebsocketUrl)
-      console.log(lastMessageData)
+      // console.log(lastMessageData)
 
       setMessageHistory(prev => prev.concat(lastMessageData))
 
