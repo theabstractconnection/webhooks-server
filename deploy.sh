@@ -16,21 +16,15 @@ GIT_URL=$(echo $GIT_URL | tr -d '\r')
 TARGET=$(echo $TARGET | tr -d '\r')
 DEPLOY_TYPE=$(echo $DEPLOY_TYPE | tr -d '\r')
 
-echo $SERVER_USERNAME
-echo $PROJECT_NAME
-echo $GIT_URL
-echo $TARGET
-echo $DEPLOY_TYPE
-
 echo "☠☠☠ UPDATING DOTENVS REPO"
 cd ${HOME}/dotenvs
-git pull origin master --progress
+git pull origin master --progress 2>&1
 cd ${HOME}/projects
 
 if [[ -z "${SERVER_USERNAME}" ]] || [[ -z "${PROJECT_NAME}" ]] || [[ -z "${GIT_URL}" ]]
 then
   echo "☠☠☠ REQUIRED VARIABLES ARE NOT PRESENT"
-  echo "!!! EXITING"
+  echo "!!! EXITING" 1>&2
   exit 1
 else
   if [ "$DEPLOY_TYPE" == "initialize" ]; then
@@ -49,7 +43,7 @@ else
     if [ -z "$(git status --porcelain)" ]; then 
       echo "☠☠☠ WORKING DIRECTORY CLEAN" 
       echo "☠☠☠ PULL FROM MASTER" 
-      git pull origin master --progress
+      git pull origin master --progress 2>&1
     else 
       echo "☠☠☠ UNCOMMITED CHANGES"
       echo "!!! EXITING"
