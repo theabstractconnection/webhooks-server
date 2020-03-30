@@ -12,5 +12,6 @@ envs -g
 ln -s $HOME/dotenvs/ecosystem.config.js $HOME/projects/webhooks-server/ecosystem.config.js || true
 
 echo "☠ PULLING & STARTING MONGODB CONTAINER"
+set -a # needed to export defined vairables for BOURNE SHELL
 envs -s prod.docker
 target=db make pullimages service
