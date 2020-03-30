@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 
-import Deploy from './components/Deploy'
+import Deployment from './components/Deployment'
 
 import './App.css'
 
@@ -8,7 +8,7 @@ function App() {
   const socket = useRef(null)
 
   const [messages, setMessages] = useState([])
-  const [deploys, setDeploys] = useState([
+  const [deployments, setDeployments] = useState([
     // {
     //   deploy: {
     //     data:{},
@@ -31,7 +31,7 @@ function App() {
 
   // const onDeployMsg = msg => {
   //   console.log(msg.githubInfos)
-  //   setDeploys(oldDeploys => [
+  //   setDeployments(oldDeploys => [
   //     ...oldDeploys,
   //     {
   //       deploy: {
@@ -41,11 +41,11 @@ function App() {
   //       },
   //     },
   //   ])
-  //   console.log(deploys)
+  //   console.log(deployments)
   // }
 
   // const onLogMsg = msg => {
-  //   setDeploys(oldDeploys =>
+  //   setDeployments(oldDeploys =>
   //     oldDeploys.map(deploy =>
   //       deploy.data.webhookDeliveryId === msg.webhookDeliveryId
   //         ? { ...deploy, log: deploy.log.concat([msg.data]) }
@@ -93,7 +93,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    setDeploys(
+    setDeployments(
       messages
         .filter(m => m.event === 'deploy')
         .map(m => {
@@ -110,9 +110,9 @@ function App() {
 
   return (
     <div className="App">
-      <div id="Deploys">
-        {deploys.map((deploy, index) => {
-          return <Deploy key={index} deploy={deploy} />
+      <div id="Deployments">
+        {deployments.map((deploy, index) => {
+          return <Deployment key={index} deploy={deploy} />
         })}
       </div>
     </div>

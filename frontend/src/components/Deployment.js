@@ -1,15 +1,15 @@
 import React/*, { useState, useEffect, useRef }*/ from "react";
 import PropTypes from 'prop-types';
 
-const Deploy = (props) => {
+const Deployment = (props) => {
   return (
-    <div id="Deploy">
+    <div id="Deployment">
       {JSON.stringify(props.deploy)}
     </div>
   )
 }
 
-Deploy.propTypes = {
+Deployment.propTypes = {
   deploy: PropTypes.shape({
     data: PropTypes.object.isRequired,
     log: PropTypes.array.isRequired,
@@ -17,4 +17,4 @@ Deploy.propTypes = {
   }).isRequired
 };
 
-export default Deploy;
+export default Deployment;

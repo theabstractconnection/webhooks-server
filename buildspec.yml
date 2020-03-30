@@ -11,19 +11,24 @@ phases:
     runtime-versions:
       nodejs: 12
     commands:
-      - echo Install
-  pre_build:
-    commands:
-      - echo Installing source NPM dependencies...
-  build:
-    commands:
+      - echo install phase...
+      - cd backend
       - npm install
       - cd frontend
       - npm install 
+  pre_build:
+    commands:
+      - echo pre_build phase...
+  build:
+    commands:
+      - echo build phase...
+      - cd backend
       - npm run build
+      - cd frontend
+      - npm run build 
   post_build:
     commands:
-      - echo Build completed on `date`
+      - echo post_build phase...
 
 artifacts:
   files:
@@ -31,8 +36,6 @@ artifacts:
     - README.md
     - appspec.yml
     - scripts/*
-    - package.json
-    - node_modules/**/*
-    - server.js
+    - backend/dist/**/*
     - frontend/build/**/*
     - deploy.sh
