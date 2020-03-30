@@ -12,7 +12,7 @@ envs -g
 ln -s $HOME/dotenvs/ecosystem.config.js $HOME/projects/webhooks-server/ecosystem.config.js || true
 
 echo "☠ PULLING & STARTING MONGODB CONTAINER"
-# envs -s prod.docker
-# target=db make pullimages
-# target=db make service
-zsh -c `source $HOME/dotfiles/bash_functions; envs -s prod.docker; target=db make pullimages service`
+envs -s prod.docker
+envs -r
+target=db make pullimages
+target=db make service
