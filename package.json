@@ -14,7 +14,8 @@
     "websockets"
   ],
   "scripts": {
-    "install": "cd backend && npm isntall && npm build && cd ../frontend && npm install && npm build",
+    "install": "cd backend && npm install && cd ../frontend && npm install && npm run build",
+    "build": "cd backend && npm run build && cd ../frontend && npm run build",
     "start": "nodemon backend/dist/server.js"
   }
 }
