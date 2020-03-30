@@ -19,8 +19,9 @@ RUN npm run build
 
 FROM node:13.10.1-alpine as server-build
 WORKDIR /app
-COPY . .
+COPY ./backend .
 RUN npm install
+RUN npm run build
 
 FROM scratch as user
 COPY --from=base . .
@@ -32,5 +33,5 @@ RUN [ "${HOST_USER}" == "root" ] || \
 
 USER ${HOST_USER}
 WORKDIR /home/${HOST_USER}
-COPY --from=server-build /app /home/${HOST_USER}
+COPY --from=server-build /app/dist /home/${HOST_USER}/backend/dist
 COPY --from=react-build /app/build /home/${HOST_USER}/frontend/build

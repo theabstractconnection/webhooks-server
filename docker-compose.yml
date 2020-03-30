@@ -1,5 +1,5 @@
 # THIS SPECIFIC FILE IS DISTRIBUTED UNDER THE UNLICENSE: http://unlicense.org.
-# 
+#
 # YOU CAN FREELY USE THIS CODE EXAMPLE TO KICKSTART A PROJECT OF YOUR OWN.
 # FEEL FREE TO REPLACE OR REMOVE THIS HEADER.
 version: '3.7'
@@ -16,6 +16,11 @@ services:
       - GITHUB_USERNAME=${GITHUB_USERNAME}
       - GITHUB_ORGANIZATION=${GITHUB_ORGANIZATION}
       - SERVER_USERNAME=${SERVER_USERNAME}
+      - MONGO_DB_HOSTNAME=${MONGO_DB_HOSTNAME:-localhost}
+      - MONGO_DB_PORT=27017 # map to the container port
+      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
     # Run with user priviliges by default.
     user: ${HOST_USER:-nodummy}
     image: ${PROJECT_NAME}:${HOST_USER:-nodummy}
@@ -28,12 +33,32 @@ services:
       args:
         - HOST_UID=${HOST_UID:-4000}
         - HOST_USER=${HOST_USER:-nodummy}
-        - PROJECT_NAME=${PROJECT_NAME}
-    # Map volumes form host to container
-    volumes:
-      - ${PWD:-.}:/home/${HOST_USER}/${PROJECT_NAME}
     # Run container as a service. Replace with something useful.
-    command: ["node",  "server.js"]
+    command: ['node', 'backend/dist/server.js']
     # Espose ports to the HOST:OTHER_CONTAINERS
     ports:
       - 9000:9000
+    depends_on:
+      - db
+    # networks:
+    #   - app-network
+
+  db:
+    image: mongo:4.1.8-xenial
+    restart: always
+    environment:
+      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+    ports:
+      - '${MONGO_DB_PORT:-27017}:27017' # port mapping only to acces db from localhost
+    volumes:
+      - db-data:/data/db
+    # networks:
+    #   - app-network
+
+volumes:
+  db-data:
+# networks:
+#   app-network:
+#     driver: bridge
