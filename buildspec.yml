@@ -14,7 +14,7 @@ phases:
       - echo install phase...
       - cd backend
       - npm install
-      - cd frontend
+      - cd ../frontend
       - npm install 
   pre_build:
     commands:
@@ -24,7 +24,7 @@ phases:
       - echo build phase...
       - cd backend
       - npm run build
-      - cd frontend
+      - cd ../frontend
       - npm run build 
   post_build:
     commands:
