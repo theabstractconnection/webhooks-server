@@ -3,6 +3,8 @@ TARGET=${TARGET:-main}
 
 set -e
 
+source "${HOME}/.bash_functions"
+
 if [[ -d $PROJECT_NAME ]]
 then
   DEPLOY_TYPE="update"
