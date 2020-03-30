@@ -13,9 +13,9 @@ cd "${APPLICATION_PATH}"
 pm2 describe "${APP_NAME}" > /dev/null
 RUNNING=$?
 if [ "${RUNNING}" -ne 0 ]; then
-  echo "☠☠☠ PM2 START"
+  echo "☠ PM2 START"
   pm2 start ecosystem.config.js --only "${APP_NAME}" --env production
 else
-  echo "☠☠☠ PM2 RESTART"
+  echo "☠ PM2 RESTART"
   pm2 restart ecosystem.config.js --only "${APP_NAME}" --env production
 fi;

@@ -41,3 +41,4 @@ artifacts:
     - backend/dist/**/*
     - frontend/build/**/*
     - deploy.sh
+    - Makefile
