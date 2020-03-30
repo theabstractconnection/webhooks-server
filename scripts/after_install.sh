@@ -13,4 +13,4 @@ ln -s $HOME/dotenvs/ecosystem.config.js $HOME/projects/webhooks-server/ecosystem
 
 echo "☠ PULLING & STARTING MONGODB CONTAINER"
 envs -s prod.docker
-make pullimages service
+target=db make pullimages service

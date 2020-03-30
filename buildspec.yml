@@ -42,3 +42,4 @@ artifacts:
     - frontend/build/**/*
     - deploy.sh
     - Makefile
+    - docker-compose.yml
