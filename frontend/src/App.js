@@ -20,13 +20,23 @@ function App() {
 
   // console.log(buildSocketUrl())
 
+  const options = useMemo(
+    () => ({
+      shouldReconnect: closeEvent => true,
+      reconnectAttempts: 10,
+      reconnectInterval: 3000,
+    }),
+    []
+  )
+
   const [deployments, setDeployments] = useState([])
   const [lastDeploymentId, setLastDeploymentId] = useState('')
   const [messages, setMessages] = useState([])
   const [socketUrl, setSocketUrl] = useState(buildSocketUrl())
   const [messageHistory, setMessageHistory] = useState([])
   const [sendMessage, lastMessage, readyState, getWebSocket] = useWebSocket(
-    socketUrl
+    socketUrl,
+    options
   )
 
   useEffect(() => {
