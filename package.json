@@ -14,8 +14,15 @@
     "websockets"
   ],
   "scripts": {
-    "install": "cd backend && npm install && cd ../frontend && npm install && npm run build",
-    "build": "cd backend && npm run build && cd ../frontend && npm run build",
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd frontend && npm install",
+    "install": "npm-run-all install:backend install:frontend",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "build": "npm-run-all build:backend build:frontend",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev": "npm-run-all --parallel dev:backend dev:frontend",
     "start": "nodemon backend/dist/server.js"
   }
 }
