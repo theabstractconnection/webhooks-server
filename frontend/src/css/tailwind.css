@@ -5,16 +5,49 @@
 
 /* Custom CSS */
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.heading {
+  @apply font-bold text-xl mb-2;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.card {
+  @apply overflow-hidden shadow-lg;
+}
+
+.pill {
+  @apply inline-block rounded-full px-3 py-1 text-sm font-semibold mr-2 cursor-pointer;
+}
+
+@variants hover {
+  .pill-light {
+    @apply text-gray-200 bg-gray-500;
+  }
+  .pill-dark {
+    @apply text-gray-500 bg-gray-200;
+  }
+}
+
+.pill-light {
+  @apply bg-gray-200 text-gray-500;
+}
+
+.pill-dark {
+  @apply bg-gray-500 text-gray-200;
+}
+
+@responsive {
+  .blur {
+    filter: blur(30px);
+  }
+}
+
+@screen md {
+  .blur {
+    filter: blur(20px);
+  }
+}
+
+@screen lg {
+  .blur {
+    filter: blur(10px);
+  }
 }
