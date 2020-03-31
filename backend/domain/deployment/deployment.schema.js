@@ -10,7 +10,7 @@ const deploymentSchema = new mongoose.Schema(
     logs: Array,
     status: {
       type: String,
-      enum: ['Pending', 'Succes', 'Failure'],
+      enum: ['Pending', 'Success', 'Failure'],
       required: true,
     },
   },
