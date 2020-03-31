@@ -68,7 +68,7 @@ function App() {
       setMessageHistory(prev => prev.concat(lastMessageData))
 
       if (lastMessageData.event === 'deploy') {
-        setDeployments(prev => prev.concat(lastMessageData.deployment))
+        setDeployments(prev => lastMessageData.deployment.concat(prev))
       }
       if (lastMessageData.event === 'log') {
         setDeployments(prev =>

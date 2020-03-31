@@ -23,7 +23,7 @@ const getDeployments = (req, res, next) => {
   Deployment.get({}, (err, deployments) => {
     handleError(res, err)
     res.json({
-      deployments: deployments,
+      deployments: deployments.reverse(),
     })
   })
 }
