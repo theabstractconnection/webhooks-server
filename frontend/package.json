@@ -26,7 +26,6 @@
   },
   "proxy": "http://localhost:9000",
   "scripts": {
-    "build:css:tailwind": "./node_modules/.bin/tailwind build src/css/tailwind.css -o src/index.css",
     "build:css": "postcss src/css/tailwind.css -o src/index.css",
     "watch:css": "postcss src/css/tailwind.css -o src/index.css -w",
     "start": "npm run watch:css & react-scripts start",
