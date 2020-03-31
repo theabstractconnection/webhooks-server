@@ -1,6 +1,24 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+const NavLinks = props => {
+  return (
+    <div className="flex flex-col md:flex-row hidden md:block -mx-2">
+      <Link
+        to="/deployments"
+        className="text-gray-600 rounded hover:border-b-2 hover:text-gray-800 border-gray-800 hover:font-medium py-2 px-2 md:mx-2"
+      >
+        Deployments
+      </Link>
+      <Link
+        to="/about"
+        className="text-gray-600 rounded hover:border-b-2 hover:text-gray-800 border-gray-800 hover:font-medium py-2 px-2 md:mx-2"
+      >
+        About
+      </Link>
+    </div>
+  )
+}
 const NavBar = props => {
   return (
     <nav className="bg-white shadow-lg">
@@ -24,20 +42,7 @@ const NavBar = props => {
             </button>
           </div>
         </div>
-        {/* <div className="flex flex-col md:flex-row hidden md:block -mx-2">
-          <Link
-            to="/deployments"
-            className="text-gray-800 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium py-2 px-2 md:mx-2"
-          >
-            Deployments
-          </Link>
-          <Link
-            to="/about"
-            className="text-gray-800 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium py-2 px-2 md:mx-2"
-          >
-            About
-          </Link>
-        </div> */}
+        <NavLinks />
       </div>
     </nav>
   )

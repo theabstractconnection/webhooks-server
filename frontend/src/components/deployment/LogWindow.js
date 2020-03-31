@@ -25,14 +25,15 @@ const LogWindowItem = styled.div`
   ${tw`relative h-full max-h-full`}
   & > .log_window_content {
     ${tw`p-4 bg-black h-full max-h-full overflow-auto`}
-  }
-  & > .hide_scrollbar {
-    ${tw`text-xs absolute p-0 top-0 right-0 bg-transparent`}
-    & > .log_window_title {
-      ${tw`
-        hidden lg:block bg-white mt-4 text-sm text-black font-medium py-1 px-2 align-middle 
-      `}
+    &::-webkit-scrollbar {
+      display: none;
     }
+  }
+  & > .log_window_title {
+    ${tw`text-xs absolute p-0 top-0 right-0 bg-transparent`}
+    ${tw`
+      hidden lg:block bg-white mt-4 text-sm text-black font-medium py-1 px-2 align-middle 
+    `}
   }
 `
 
@@ -42,9 +43,7 @@ const LogWindow = () => {
 
   return (
     <LogWindowItem className="LogWindow">
-      <div className="hide_scrollbar">
-        <div className="log_window_title">Logs</div>
-      </div>
+      <div className="log_window_title">Logs</div>
       <div className="log_window_content">
         {logs.map((log, idx) => (
           <Log log={log} key={idx} />
