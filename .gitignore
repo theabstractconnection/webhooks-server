@@ -6,5 +6,7 @@ ecosystem.config.js
 dist
 build
 
+frontend/src/index.css
+
 yarn.*
 example-hook-payload.json
