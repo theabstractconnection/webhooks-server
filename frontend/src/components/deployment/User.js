@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
+import { DeploymentContext } from '../Deployment'
 
 const UserItem = styled.div`
-  ${props => (!props.expanded ? tw`justify-end` : tw`justify-end lg:justify-start`)}
+  ${props =>
+    !props.expanded ? tw`justify-end` : tw`justify-end lg:justify-start`}
 
   ${tw`flex items-center`}
 `
@@ -12,23 +14,28 @@ const AvatarItem = styled.img`
 `
 const UserInfo = styled.div`
   ${tw`text-sm`}
-  & > p {
-    ${tw`text-gray-600 text-xs`}
-  }
-  & > p:first-of-type {
+  & > .login {
     ${tw`text-gray-900 leading-none`}
+  }
+  & > .email {
+    ${tw`text-gray-600 text-xs`}
   }
 `
 
 const User = props => {
-  const { user, expanded } = props
-
+  const [deployment, expanded] = useContext(DeploymentContext)
+  const {
+    data: {
+      sender,
+      repository: { pusher },
+    },
+  } = deployment
   return (
     <UserItem expanded={expanded}>
-      <AvatarItem src={user.avatar_url} alt="User" />
+      <AvatarItem src={sender.avatar_url} alt="User" />
       <UserInfo>
-        <p>{user.login}</p>
-        <p>{user.email}</p>
+        <p className="login">{sender.login}</p>
+        {pusher && <p className="email">{pusher.email}</p>}
       </UserInfo>
     </UserItem>
   )

@@ -1,19 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
 
-// const StatusItem = styled.span`
-//   ${props =>
-//     props.status === 'Pending'
-//       ? tw`bg-blue-500`
-//       : props.status === 'Success'
-//       ? tw`bg-green-500`
-//       : tw`bg-red-500`}
-//   ${tw`
-//     tracking-wider text-white px-4 py-1 
-//     text-sm rounded leading-loose mx-2 font-semibold
-//   `}
-// `
+import { DeploymentContext } from '../Deployment'
 
 const StatusItem = styled.span`
   ${props =>
@@ -28,8 +17,9 @@ const StatusItem = styled.span`
   `}
 `
 
-const Status = props => {
-  const { status } = props
+const Status = () => {
+  const [deployment] = useContext(DeploymentContext)
+  const { status } = deployment
 
   return (
     <StatusItem status={status}>

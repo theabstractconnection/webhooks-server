@@ -8,10 +8,10 @@ const ExpandItem = styled.div`
 `
 
 const Expand = props => {
-  const { expanded, expandHandler } = props
+  const [expanded, handleExpand] = useContext(DeploymentContext)
 
   return (
-    <ExpandItem onClick={expandHandler}>
+    <ExpandItem onClick={handleExpand}>
       <FontAwesomeIcon
           icon={!expanded ? 'angle-down' : 'angle-up'}
       />

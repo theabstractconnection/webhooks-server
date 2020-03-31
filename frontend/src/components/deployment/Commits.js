@@ -1,11 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
+import { DeploymentContext } from '../Deployment'
 
 const CommitItem = styled.div`
-  ${tw`
-      mb-3
-  `}
+  ${tw`mb-3`}
 `
 
 const Commit = props => {
@@ -14,7 +13,7 @@ const Commit = props => {
   return (
     <CommitItem>
       <a href={commit.url} target="_blank" rel="noopener noreferrer">
-      {commit.id.substring(0,8)}: {commit.message}
+        {commit.id.substring(0, 8)}: {commit.message}
       </a>
     </CommitItem>
   )
@@ -26,14 +25,18 @@ const CommitsItem = styled.div`
   `}
 `
 
-const Commits = props => {
-  const { commits } = props
+const Commits = () => {
+  const [deployment] = useContext(DeploymentContext)
+  const {
+    data: {
+      repository: { commits },
+    },
+  } = deployment
 
   return (
     <CommitsItem>
-      {commits.map((commit, idx) => (
-        <Commit commit={commit} key={idx} />
-      ))}
+      {commits &&
+        commits.map((commit, idx) => <Commit commit={commit} key={idx} />)}
     </CommitsItem>
   )
 }

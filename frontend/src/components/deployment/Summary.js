@@ -10,13 +10,11 @@ const SummaryItem = styled.div`
   & > * {${tw`ml-2`}}
 `
 
-const Summary = props => {
-  const { /*expanded, expandHandler,*/ status } = props
-
+const Summary = () => {
   return (
     <SummaryItem>
-      <Status status={status} />
-      {/* <Expand expanded={expanded} expandHandler={expandHandler} /> */}
+      <Status/>
+      {/* <Expand/> */}
     </SummaryItem>
   )
 }

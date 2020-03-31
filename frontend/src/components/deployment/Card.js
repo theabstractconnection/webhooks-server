@@ -6,6 +6,12 @@ export const Card = styled.div`
       text-xlmax-w-sm w-full lg:max-w-full lg:flex
       my-6 shadow-md
   `}
+  max-height: 20rem;
+  @responsive{
+    @screen lg {
+      max-height: 30rem;
+    }
+  }
 `
 export const CardPicture = styled.div`
   ${props => `background-image: url('${props.src}');`}
@@ -21,20 +27,6 @@ export const CardContent = styled.div`
       w-full
   `}
 `
-
-// export const CardContentHeader = styled.div`
-//   ${props =>
-//     props.status === 'Pending'
-//       ? tw`bg-blue-100`
-//       : props.status === 'Success'
-//       ? tw`bg-green-100`
-//       : tw`bg-red-100`}
-
-//   ${tw`
-//       p-4 flex flex-col justify-between leading-normal
-//       w-full relative
-//   `}
-// `
 
 export const CardContentHeader = styled.div`
   ${tw`

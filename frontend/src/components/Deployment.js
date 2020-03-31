@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, createContext, useContext } from 'react'
 import PropTypes from 'prop-types'
 
 import {
@@ -11,43 +11,45 @@ import {
 
 import Summary from './deployment/Summary'
 import Repository from './deployment/Repository'
-import Logs from './deployment/Logs'
+import LogWindow from './deployment/LogWindow'
 import AdditionalInfos from './deployment/AdditionalInfos'
 
-const Deployment = props => {
+// Create Context Object
+export const DeploymentContext = createContext()
+
+// Create a provider for components to consume and subscribe to changes
+export const DeploymentContextProvider = props => {
+  const { deployment } = props
+
   const [expanded, setExpanded] = useState(false)
+
+  return (
+    <DeploymentContext.Provider
+      value={[deployment, expanded, setExpanded]}
+    >
+      {props.children}
+    </DeploymentContext.Provider>
+  )
+}
+
+export const Deployment = () => {
+  const [deployment, expanded, setExpanded] = useContext(DeploymentContext)
   const handleExpand = () => setExpanded(!expanded)
   const {
-    webhookDeliveryId,
-    data: { repository, sender, pusher, commits },
-    logs,
-    status,
-  } = props.deployment
+    data: { repository },
+  } = deployment
 
   return (
     <Card className="Deployment" onClick={handleExpand}>
+      {console.log(deployment)}
       <CardPicture src={repository.owner.avatar_url} />
       <CardContent>
-        <CardContentHeader status={status}>
-          <Summary
-            expanded={expanded}
-            expandHandler={handleExpand}
-            status={status}
-          />
-          <Repository
-            expanded={expanded}
-            repository={repository}
-          />
-          <AdditionalInfos
-            commits={commits}
-            expanded={expanded}
-            user={{ ...sender, email: pusher.email }}
-            webhookDeliveryId={webhookDeliveryId}
-          />
+        <CardContentHeader>
+          <Summary />
+          <Repository />
+          <AdditionalInfos />
         </CardContentHeader>
-        <CardContentFooter>
-          {expanded && <Logs logs={logs} expanded={expanded} />}
-        </CardContentFooter>
+        <CardContentFooter>{expanded && <LogWindow />}</CardContentFooter>
       </CardContent>
     </Card>
   )
@@ -62,5 +64,3 @@ Deployment.propTypes = {
     status: PropTypes.string.isRequired,
   }),
 }
-
-export default Deployment

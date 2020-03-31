@@ -1,29 +1,29 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
 
+import { DeploymentContext } from '../Deployment'
 import Commits from './Commits'
 import User from './User'
 
 const AdditionalInfosItem = styled.div`
-  ${props => (!props.expanded 
-    ? tw`flex-row items-center justify-between` 
-    : tw`flex-col`)}
-
-  
-  ${tw`
-      flex text-sm font-medium align-middle 
-  `}
+  ${props =>
+    !props.expanded ? tw`flex-row items-center justify-between` : tw`flex-col`}
+  ${tw`flex text-sm font-medium align-middle`}
+  & > .deployment_id {
+    ${tw`mb-2`}
+  }
 `
 
-const AdditionalInfos = props => {
-  const { commits, expanded, user, webhookDeliveryId } = props
+const AdditionalInfos = () => {
+  const [deployment, expanded] = useContext(DeploymentContext)
+  const { webhookDeliveryId } = deployment
 
   return (
     <AdditionalInfosItem expanded={expanded}>
-      <div>Deployment Id: {webhookDeliveryId}</div>
-      {expanded && <Commits commits={commits} expanded={expanded} />}
-      <User user={user} expanded={expanded} />
+      <div class="deployment_id">Deployment Id: {webhookDeliveryId}</div>
+      {expanded && <Commits />}
+      <User />
     </AdditionalInfosItem>
   )
 }
