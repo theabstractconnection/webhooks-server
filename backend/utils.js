@@ -51,7 +51,7 @@ const processOptions = {
 }
 
 const spawnChild = (repositoryName, repositorySshUrl, target) => {
-  childProcess.spawn(
+  return childProcess.spawn(
     '/bin/bash',
     [
       '-c',
