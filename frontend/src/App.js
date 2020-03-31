@@ -10,7 +10,7 @@ import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons'
 
 import './App.css'
 import NavBar from './components/NavBar'
-import Deployment from './components/Deployment'
+import { Deployment, DeploymentContextProvider } from './components/Deployment'
 
 library.add(fab, faAngleDown, faAngleUp)
 
@@ -68,7 +68,7 @@ function App() {
       setMessageHistory(prev => prev.concat(lastMessageData))
 
       if (lastMessageData.event === 'deploy') {
-        setDeployments(prev => lastMessageData.deployment.concat(prev))
+        setDeployments(prev => [lastMessageData.deployment].concat(prev))
       }
       if (lastMessageData.event === 'log') {
         setDeployments(prev =>
@@ -107,7 +107,12 @@ function App() {
             <div id="Deployments" className="container mx-auto">
               {deployments.map(deployment => {
                 return (
-                  <Deployment key={deployment._id} deployment={deployment} />
+                  <DeploymentContextProvider
+                    deployment={deployment}
+                    key={deployment._id}
+                  >
+                    <Deployment/>
+                  </DeploymentContextProvider>
                 )
               })}
             </div>
