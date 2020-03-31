@@ -1,10 +1,20 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
 import useWebSocket, { ReadyState } from 'react-use-websocket'
 import axios from 'axios'
 
-import Deployment from './components/Deployment'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons'
 
 import './App.css'
+import NavBar from './components/NavBar'
+import Deployment from './components/Deployment'
+
+library.add(fab, faAngleDown, faAngleUp)
+
+const PROXY_PORT = 9000
 
 function App() {
   const buildSocketUrl = () => {
@@ -13,7 +23,7 @@ function App() {
     const hostname = window.location.hostname
     const port = window.location.port
     const socketUrl = `${socketProtocol}//${hostname}${
-      port ? ':' + port : ''
+      port ? ':' + PROXY_PORT : ''
     }/socket`
     return socketUrl
   }
@@ -89,21 +99,31 @@ function App() {
   }[readyState]
 
   return (
-    <div className="App">
-      <div>
+    <div className="App w-full">
+      <Router>
+        <NavBar />
+        <Switch>
+          <Route path="/">
+            <div id="Deployments" className="container mx-auto">
+              {deployments.map(deployment => {
+                return (
+                  <Deployment key={deployment._id} deployment={deployment} />
+                )
+              })}
+            </div>
+          </Route>
+        </Switch>
+      </Router>
+
+      {/* <div>
         <span>The WebSocket is currently {connectionStatus}</span>
-        {/* {lastMessage ? <span>Last message: {lastMessage.data}</span> : null} */}
-        {/* <ul>
+        {lastMessage ? <span>Last message: {lastMessage.data}</span> : null}
+        <ul>
           {messageHistory.map((message, idx) => (
             <li key={idx}>{JSON.stringify(message)}</li>
           ))}
-        </ul> */}
-      </div>
-      <div id="Deployments">
-        {deployments.map(deployment => {
-          return <Deployment key={deployment._id} deployment={deployment} />
-        })}
-      </div>
+        </ul>
+      </div> */}
     </div>
   )
 }
