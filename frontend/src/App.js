@@ -10,6 +10,7 @@ import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons'
 
 import './App.css'
 import NavBar from './components/NavBar'
+import Header from './components/Header'
 import { Deployment, DeploymentContextProvider } from './components/Deployment'
 
 library.add(fab, faAngleDown, faAngleUp)
@@ -103,7 +104,7 @@ function App() {
       <Router>
         <NavBar />
         <Switch>
-          <Route path="/">
+        <Route path="/deployments">
             <div id="Deployments" className="container mx-auto">
               {deployments.map(deployment => {
                 return (
@@ -117,17 +118,14 @@ function App() {
               })}
             </div>
           </Route>
+          <Route path="/">
+            <Header />
+          </Route>
         </Switch>
       </Router>
 
       {/* <div>
         <span>The WebSocket is currently {connectionStatus}</span>
-        {lastMessage ? <span>Last message: {lastMessage.data}</span> : null}
-        <ul>
-          {messageHistory.map((message, idx) => (
-            <li key={idx}>{JSON.stringify(message)}</li>
-          ))}
-        </ul>
       </div> */}
     </div>
   )
