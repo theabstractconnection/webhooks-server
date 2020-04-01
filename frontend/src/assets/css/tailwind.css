@@ -5,8 +5,6 @@
 
 /* Custom CSS */
 
-
-
 /* LogWindow */
 @responsive {
   .LogWindow {
@@ -33,16 +31,9 @@
   }
 }
 
-/* Deplyment */
+/* Deployment */
 .Deployment {
   max-height: unset;
-  opacity: 0.8;
-}
-
-@variants hover {
-  .Deployment {
-    opacity: 1;
-  }
 }
 
 @responsive {

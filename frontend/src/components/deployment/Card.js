@@ -2,7 +2,8 @@ import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
 
 export const Card = styled.div`
-  ${tw`text-xlmax-w-sm w-full lg:max-w-full lg:flex my-6 shadow-md`}
+  ${tw`text-xlmax-w-sm w-full lg:max-w-full lg:flex my-6 
+       shadow-md opacity-75 hover:opacity-100`}
 `
 
 export const CardPicture = styled.div`
