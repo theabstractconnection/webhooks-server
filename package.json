@@ -20,8 +20,8 @@
     "build:backend": "cd backend && npm run build",
     "build:frontend": "cd frontend && npm run build",
     "build": "npm-run-all build:backend build:frontend",
-    "dev:backend": "cd backend && npm run dev",
-    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && IS_DEV=true npm run dev",
+    "dev:frontend": "cd frontend && IS_DEV=true npm run dev",
     "dev": "npm-run-all --parallel dev:backend dev:frontend",
     "start": "nodemon backend/dist/server.js"
   }

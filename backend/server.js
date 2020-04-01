@@ -1,6 +1,8 @@
-import bodyParser from 'body-parser'
 import express from 'express'
 import expressWs from 'express-ws'
+import bodyParser from 'body-parser'
+import compression from 'compression'
+import path from 'path'
 
 import { connectDatabase } from './db'
 import { verifyPostData } from './middlewares'
@@ -18,7 +20,16 @@ let deploymentRouter = express.Router()
 
 // MIDLEWARES
 app.use(bodyParser.json())
-app.use(express.static(`${__dirname}/../../frontend/build`))
+app.use(compression())
+// app.use(express.static(path.join(__dirname , '../frontend/build')))
+app.use(
+  express.static(
+    path.join(
+      __dirname,
+      process.env.IS_DEV ? '../frontend/build/' : '../../frontend/build/'
+    )
+  )
+)
 app.use((err, req, res, next) => {
   if (err) console.error(err)
   res.status(403).send('Request body was not signed or verification failed')
@@ -49,9 +60,15 @@ app.post('/api/deploy', verifyPostData, (req, res) => {
 })
 
 // CATCH ALL ROUTE FOR REACT ROUTER
-app.get('*', (req, res) => {                       
-  res.sendFile(`${__dirname}/../../frontend/build/index.html`);                               
-});
+app.get('*', (req, res) => {
+  res.sendFile(
+    path.resolve(
+      __dirname,
+      process.env.IS_DEV ? '../frontend/build/' : '../../frontend/build/',
+      'index.html'
+    )
+  )
+})
 
 // CONNECT TO DATABASE & START EXPRESS SERVER
 connectDatabase(() =>
