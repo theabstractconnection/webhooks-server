@@ -6,8 +6,7 @@ import Status from './Status'
 // import Expand from './Expand'
 
 const SummaryItem = styled.div`
-  ${tw`absolute m-4 top-0 right-0 flex z-50`}
-  & > * {${tw`ml-2`}}
+  ${tw``}
 `
 
 const Summary = () => {

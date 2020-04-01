@@ -10,10 +10,10 @@ const UserItem = styled.div`
   ${tw`flex items-center`}
 `
 const AvatarItem = styled.img`
-  ${tw`w-10 h-10 rounded-full mr-4`}
+  ${tw`w-10 rounded-full md:mr-4`}
 `
 const UserInfo = styled.div`
-  ${tw`text-sm`}
+  ${tw`hidden md:flex text-sm`}
   & > .login {
     ${tw`text-gray-900 leading-none`}
   }
@@ -25,10 +25,7 @@ const UserInfo = styled.div`
 const User = props => {
   const [deployment, expanded] = useContext(DeploymentContext)
   const {
-    data: {
-      sender,
-      repository: { pusher },
-    },
+    data: { sender, pusher, repository },
   } = deployment
   return (
     <UserItem expanded={expanded}>

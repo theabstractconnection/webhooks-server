@@ -10,8 +10,7 @@ const StatusItem = styled.span`
       ? tw`bg-blue-500` //text-blue-500 bg-blue-100
       : props.status === 'Success'
       ? tw`bg-green-500` //text-green-500 bg-green-100
-      : tw`bg-red-500` //text-red-500 bg-red-100
-    }
+      : tw`bg-red-500`} //text-red-500 bg-red-100
   ${tw`
       text-sm text-white font-medium py-1 px-2 rounded align-middle 
   `}
@@ -20,7 +19,6 @@ const StatusItem = styled.span`
 const Status = () => {
   const [deployment] = useContext(DeploymentContext)
   const { status } = deployment
-
   return (
     <StatusItem status={status}>
       <i className="fas fa-star" aria-hidden="true"></i>

@@ -9,7 +9,6 @@ import {
   CardContentFooter,
 } from './deployment/Card'
 
-import Summary from './deployment/Summary'
 import Repository from './deployment/Repository'
 import LogWindow from './deployment/LogWindow'
 import AdditionalInfos from './deployment/AdditionalInfos'
@@ -45,7 +44,6 @@ export const Deployment = () => {
       <CardPicture src={repository.owner.avatar_url} />
       <CardContent>
         <CardContentHeader>
-          <Summary />
           <Repository />
           <AdditionalInfos />
         </CardContentHeader>
