@@ -29,7 +29,7 @@ const Commits = () => {
   const [deployment] = useContext(DeploymentContext)
   const {
     data: {
-      repository: { commits },
+      commits
     },
   } = deployment
 
