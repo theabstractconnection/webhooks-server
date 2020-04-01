@@ -1,5 +1,5 @@
 const {
-  addBabelPlugin,
+  // addBabelPlugin,
   addDecoratorsLegacy,
   addPostcssPlugins,
   disableEsLint,
@@ -8,7 +8,7 @@ const {
   watchAll,
 } = require('customize-cra')
 
-const webpack = require('webpack')
+// const webpack = require('webpack')
 
 module.exports = {
   webpack: override(
@@ -17,13 +17,13 @@ module.exports = {
 
     // disable eslint in webpack
     disableEsLint(),
-    addBabelPlugin([
-      'tailwind-components',
-      {
-        config: './src/tailwind.config.js',
-        format: 'auto',
-      },
-    ]),
+    // addBabelPlugin([
+    //   'tailwind-components',
+    //   {
+    //     config: './src/tailwind.config.js',
+    //     format: 'auto',
+    //   },
+    // ]),
     addPostcssPlugins([
       require('postcss-import')({
         plugins: [require('stylelint')],
@@ -36,7 +36,10 @@ module.exports = {
         },
         browsers: ['> 1%', 'last 2 versions', 'Firefox ESR'],
       }),
+      // require('autoprefixer'),
     ])
   ),
-  devServer: overrideDevServer(watchAll()),
+  devServer: overrideDevServer(
+    watchAll()
+  ),
 }
