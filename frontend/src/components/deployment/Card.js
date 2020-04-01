@@ -6,7 +6,6 @@ export const Card = styled.div`
       text-xlmax-w-sm w-full lg:max-w-full lg:flex
       my-6 shadow-md
   `}
-  max-height: 20rem;
 `
 export const CardPicture = styled.div`
   ${props => `background-image: url('${props.src}');`}
