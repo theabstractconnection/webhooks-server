@@ -31,7 +31,7 @@ export const DeploymentContextProvider = props => {
   )
 }
 
-export const Deployment = () => {
+export const Deployment = (props) => {
   const [deployment, expanded, setExpanded] = useContext(DeploymentContext)
   const handleExpand = () => setExpanded(!expanded)
   const {
@@ -41,7 +41,7 @@ export const Deployment = () => {
   return (
     <Card className="Deployment" onClick={handleExpand}>
       {console.log(deployment)}
-      <CardPicture src={repository.owner.avatar_url} />
+      <CardPicture imageSrc={repository.owner.avatar_url} />
       <CardContent>
         <CardContentHeader>
           <Repository />
