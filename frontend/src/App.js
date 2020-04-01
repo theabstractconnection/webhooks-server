@@ -52,7 +52,7 @@ function App() {
 
   useEffect(() => {
     const fetchDeployments = async () => {
-      const { data } = await axios.get('/deployment/get')
+      const { data } = await axios.get('/api/ressources/deployment')
       setDeployments(data.deployments)
       // console.log(data.deployments)
     }

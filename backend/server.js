@@ -30,11 +30,11 @@ app.ws('/socket', function(ws, req) {
 })
 
 // DEPLOYMENTS ROUTES
-app.use('/deployment', deploymentRouter)
+app.use('/api/ressources/deployment', deploymentRouter)
 deploymentRoutes(deploymentRouter)
 
 // WEBHOOK ROUTE
-app.post('/', verifyPostData, (req, res) => {
+app.post('/api/deploy', verifyPostData, (req, res) => {
   const sender = req.body.sender.login
   const organization = req.body.repository.owner.login
   const repositoryName = req.body.repository.name
