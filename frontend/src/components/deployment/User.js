@@ -6,23 +6,24 @@ import { DeploymentContext } from '../Deployment'
 const UserItem = styled.div`
   ${props =>
     !props.expanded ? tw`justify-end` : tw`justify-end lg:justify-start`}
-
   ${tw`flex items-center`}
 `
 const AvatarItem = styled.img`
   ${tw`w-10 rounded-full md:mr-4`}
 `
 const UserInfo = styled.div`
-  ${tw`hidden md:flex text-sm`}
-  & > .login {
-    ${tw`text-gray-900 leading-none`}
-  }
-  & > .email {
-    ${tw`text-gray-600 text-xs`}
-  }
+  ${tw`hidden text-sm`}
 `
 
-const User = props => {
+const Login = styled.div`
+  ${tw`text-gray-900 leading-none`}
+`
+
+const Email = styled.div`
+  ${tw`text-gray-600 text-xs`}
+`
+
+const User = () => {
   const [deployment, expanded] = useContext(DeploymentContext)
   const {
     data: { sender, pusher, repository },
@@ -31,8 +32,8 @@ const User = props => {
     <UserItem expanded={expanded}>
       <AvatarItem src={sender.avatar_url} alt="User" />
       <UserInfo>
-        <p className="login">{sender.login}</p>
-        {pusher && <p className="email">{pusher.email}</p>}
+        <Login>{sender.login}</Login>
+        {pusher && <Email>{pusher.email}</Email>}
       </UserInfo>
     </UserItem>
   )
