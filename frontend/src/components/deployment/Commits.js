@@ -3,6 +3,10 @@ import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
 import { DeploymentContext } from '../Deployment'
 
+const CommitsItem = styled.div`
+  ${tw``}
+`
+
 const CommitItem = styled.div`
   ${tw`mb-3`}
 `
@@ -19,18 +23,10 @@ const Commit = props => {
   )
 }
 
-const CommitsItem = styled.div`
-  ${tw`
-   
-  `}
-`
-
 const Commits = () => {
   const [deployment] = useContext(DeploymentContext)
   const {
-    data: {
-      commits
-    },
+    data: { commits },
   } = deployment
 
   return (
