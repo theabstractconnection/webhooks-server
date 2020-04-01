@@ -14,8 +14,10 @@ phases:
       - echo install phase...
       - cd backend
       - npm install
+      - npm install --dev
       - cd ../frontend
       - npm install 
+      - npm install --dev
       - cd ..
   pre_build:
     commands:
