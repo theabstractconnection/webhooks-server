@@ -12,17 +12,18 @@ const RepositoryItem = styled.div`
     ${tw`text-sm text-gray-600`}
   }
 `
-const RepositoryMainInfosItem = styled.div`
+const RepositoryMainInfos = styled.div`
   ${tw`flex flex-row items-baseline mb-1 leading-none flex-wrap`}
-  & > div {
-    flex flex-wrap
-  }
-  .repoName {
-    ${tw`text-gray-900 font-bold text-3xl`}
-  }
-  .repoOrganisation {
-    ${tw`text-2xl text-gray-900`}
-  }
+`
+const RepositoryMainInfosWrapper = styled.div`
+  ${tw`flex flex-wrap`}
+`
+const RepositoryName = styled.a`
+  ${tw`text-gray-900 font-bold text-3xl`}
+`
+
+const RepositoryOwner = styled.a`
+${tw`text-2xl text-gray-900`}
 `
 
 const Repository = props => {
@@ -33,31 +34,29 @@ const Repository = props => {
 
   return (
     <RepositoryItem expanded={expanded}>
-      <div className="flex justify-between flex-wrap">
-        <RepositoryMainInfosItem>
-          <a
-            className="repoName"
+      <RepositoryMainInfosWrapper className="flex justify-between flex-wrap">
+        <RepositoryMainInfos>
+          <RepositoryName
             href={repository.html_url}
             target="_blank"
             rel="noopener noreferrer"
           >
             {repository.name}
-          </a>
+          </RepositoryName>
           <FontAwesomeIcon
             icon={['fab', 'github']}
             style={{ marginRight: '0.5rem', marginLeft: '0.5rem' }}
           />
-          <a
-            className="repoOrganisation"
+          <RepositoryOwner
             href={repository.html_url}
             target="_blank"
             rel="noopener noreferrer"
           >
             {repository.owner.login}
-          </a>
-        </RepositoryMainInfosItem>
+          </RepositoryOwner>
+        </RepositoryMainInfos>
         <Summary />
-      </div>
+      </RepositoryMainInfosWrapper>
       <p>{repository.description}</p>
       <i>{deployment.data.zen}</i>
     </RepositoryItem>
