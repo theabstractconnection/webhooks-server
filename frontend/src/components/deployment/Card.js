@@ -7,11 +7,6 @@ export const Card = styled.div`
       my-6 shadow-md
   `}
   max-height: 20rem;
-  @responsive{
-    @screen lg {
-      max-height: 30rem;
-    }
-  }
 `
 export const CardPicture = styled.div`
   ${props => `background-image: url('${props.src}');`}

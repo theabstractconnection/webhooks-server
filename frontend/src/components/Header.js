@@ -1,15 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import networkPicture from '../assets/images/network.jpg'
 
 const Main = () => {
   return (
-    <div class="flex items-center text-center lg:text-left px-8 md:px-12 lg:w-1/2">
-      <div>
+    <div class="relative w-full flex items-center text-center lg:text-left px-8 md:px-12 lg:w-1/2 bg-cover">
+      <div class="z-10">
         <h2 class="text-3xl font-semibold text-gray-800 md:text-4xl">
           Homemade{' '}
           <span class="text-indigo-600">Webhooks deployment server</span>
         </h2>
-        <p class="mt-2 text-sm text-gray-500 md:text-base">
+        <p class="mt-2 text-sm text-whitemd:text-base">
           Built with React Express Mongo Docker and more...
         </p>
         <div class="flex justify-center lg:justify-start mt-6">
@@ -27,6 +28,12 @@ const Main = () => {
           </Link>
         </div>
       </div>
+      {/* <div
+        class="absolute lg:hidden top-0 left-0 w-full h-full opacity-75"
+        style={{
+          'background-image': `url(${networkPicture})`,
+        }}
+      ></div> */}
     </div>
   )
 }
@@ -38,13 +45,11 @@ const ClipSplash = () => {
       style={{ 'clip-path': 'polygon(10% 0, 100% 0%, 100% 100%, 0 100%)' }}
     >
       <div
-        class="h-full object-cover"
+        class="h-full object-cover bg-cover opacity-75"
         style={{
-          'background-image':
-            'url(https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80)',
+          'background-image': `url(${networkPicture})`,
         }}
       >
-        <div class="h-full bg-black opacity-25"></div>
       </div>
     </div>
   )
@@ -52,7 +57,7 @@ const ClipSplash = () => {
 
 const Header = () => {
   return (
-    <div class="flex bg-white" style={{ height: '600px' }}>
+    <div class="flex" style={{ height: '600px' }}>
       <Main />
       <ClipSplash />
     </div>
