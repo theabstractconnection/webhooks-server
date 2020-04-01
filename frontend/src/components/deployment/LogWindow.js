@@ -22,6 +22,9 @@ const Log = props => {
 }
 
 const LogWindowItem = styled.div`
+  &::-webkit-scrollbar {
+    display: none;
+  }
   ${tw`relative h-full`}
   & > .log_window_content {
     ${tw`p-4 bg-black h-full h-full overflow-auto`}
