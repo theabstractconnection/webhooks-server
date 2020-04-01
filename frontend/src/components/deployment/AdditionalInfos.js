@@ -21,7 +21,7 @@ const AdditionalInfos = () => {
 
   return (
     <AdditionalInfosItem expanded={expanded}>
-      <div class="deployment_id">Deployment Id: {webhookDeliveryId}</div>
+      <div className="deployment_id">Deployment Id: {webhookDeliveryId}</div>
       {expanded && <Commits />}
       <User />
     </AdditionalInfosItem>
