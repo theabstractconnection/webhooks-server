@@ -1,5 +1,5 @@
 const {
-  // addBabelPlugin,
+  addBabelPlugin,
   addDecoratorsLegacy,
   addPostcssPlugins,
   disableEsLint,
@@ -17,13 +17,13 @@ module.exports = {
 
     // disable eslint in webpack
     disableEsLint(),
-    // addBabelPlugin([
-    //   'tailwind-components',
-    //   {
-    //     config: './src/tailwind.config.js',
-    //     format: 'auto',
-    //   },
-    // ]),
+    addBabelPlugin([
+      'tailwind-components',
+      {
+        config: './src/tailwind.config.js',
+        format: 'auto',
+      },
+    ]),
     addPostcssPlugins([
       require('postcss-import')({
         plugins: [require('stylelint')],
