@@ -5,27 +5,9 @@
 
 /* Custom CSS */
 
-.heading {
-  @apply font-bold text-xl mb-2;
-}
 
-.card {
-  @apply overflow-hidden shadow-lg;
-}
 
-.pill {
-  @apply inline-block rounded-full px-3 py-1 text-sm font-semibold mr-2 cursor-pointer;
-}
-
-@variants hover {
-  .pill-light {
-    @apply text-gray-200 bg-gray-500;
-  }
-  .pill-dark {
-    @apply text-gray-500 bg-gray-200;
-  }
-}
-
+/* LogWindow */
 @responsive {
   .LogWindow {
     width: 100%;
@@ -48,6 +30,18 @@
   .LogWindow {
     width: 30rem;
     max-width: 30rem;
+  }
+}
+
+/* Deplyment */
+.Deployment {
+  max-height: unset;
+  opacity: 75%;
+}
+
+@variants hover {
+  .Deployment {
+    opacity: 100%;
   }
 }
 
