@@ -48,6 +48,11 @@ app.post('/api/deploy', verifyPostData, (req, res) => {
   }
 })
 
+// CATCH ALL ROUTE FOR REACT ROUTER
+app.get('*', (req, res) => {                       
+  res.sendFile(`${__dirname}/../../frontend/build/index.html`);                               
+});
+
 // CONNECT TO DATABASE & START EXPRESS SERVER
 connectDatabase(() =>
   app.listen(PORT, () => {
