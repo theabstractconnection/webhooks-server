@@ -26,14 +26,14 @@ const Email = styled.div`
 const User = () => {
   const [deployment, expanded] = useContext(DeploymentContext)
   const {
-    data: { sender, pusher, repository },
+    data: { pusher, repository },
   } = deployment
   return (
     <UserItem expanded={expanded}>
       <AvatarItem src={sender.avatar_url} alt="User" />
       <UserInfo>
-        <Login>{sender.login}</Login>
-        {pusher && <Email>{pusher.email}</Email>}
+        <Login>{pusher.name}</Login>
+        <Email>{pusher.email}</Email>
       </UserInfo>
     </UserItem>
   )
