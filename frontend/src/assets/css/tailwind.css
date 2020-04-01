@@ -36,12 +36,12 @@
 /* Deplyment */
 .Deployment {
   max-height: unset;
-  opacity: 75%;
+  opacity: 0.8;
 }
 
 @variants hover {
   .Deployment {
-    opacity: 100%;
+    opacity: 1;
   }
 }
 
