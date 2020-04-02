@@ -30,6 +30,7 @@ const User = () => {
   } = deployment
   return (
     <UserItem expanded={expanded}>
+      {console.log(deployment)}
       <AvatarItem src={sender.avatar_url} alt="User" />
       {pusher && (
         <UserInfo>
