@@ -31,7 +31,7 @@ export const DeploymentContextProvider = props => {
 export const Deployment = props => {
   const [deployment, expanded, setExpanded] = useContext(DeploymentContext)
   const deploymentRef = useRef(null);
-  const handleExpand = () => {deploymentRef.setActive; setExpanded(!expanded)}
+  const handleExpand = () => {deploymentRef.current.setActive; setExpanded(!expanded)}
   const {
     data: { repository },
   } = deployment
