@@ -1,7 +1,7 @@
 import childProcess from 'child_process'
 import queryString from 'query-string'
-import Deployment from './domain/deployment/deployment.model'
-import { aWss } from './server'
+import Deployment from '../domain/deployment/deployment.model'
+import { aWss } from '../server'
 
 const deliveryHeaderName = 'X-GitHub-Delivery'
 
@@ -113,10 +113,20 @@ const updateDeployment = (deployment, logs, status) => {
   Deployment.update({ _id: deployment._id }, { logs, status }, () => {})
 }
 
+const catchWronglyConsideredAsStderr = (d, type) => {
+  const mappings = ['is up-to-date', 'Building']
+  let type = type
+  mappings.forEach(m => {
+    type = d.includes(m) ? 'stdout' : type
+  })
+  return type
+}
+
 const handleProcessOutput = (type, deploymentProcess, fullLog, deployment) => {
   deploymentProcess[type].setEncoding('utf8')
   deploymentProcess[type].on('data', data => {
     formatLogData(data).forEach(d => {
+      type = catchWronglyConsideredAsStderr(d, type)
       appendToProcessLog(fullLog, type, d)
       broadcastLog(deployment._id, type, d)
       if (type === 'stdout' && d.includes('☠☠☠ SUCCCESS SERVICES STARTED')) {
