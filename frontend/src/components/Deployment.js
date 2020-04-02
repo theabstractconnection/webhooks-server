@@ -40,7 +40,6 @@ export const Deployment = (props) => {
 
   return (
     <Card className="Deployment" onClick={handleExpand}>
-      {console.log(deployment)}
       <CardPicture imageSrc={repository.owner.avatar_url} />
       <CardContent>
         <CardContentHeader>
