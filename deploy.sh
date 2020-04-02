@@ -55,7 +55,7 @@ else
 
   if [ "$DEPLOY_TYPE" == "initialize" ]; then
     echo "☠☠☠ PULLING SERVICE'S IMAGES" 
-    make project_name=$PROJECT_NAME target=$TARGET pullimages 2>&1 || exit 1
+    make project_name=$PROJECT_NAME target=$TARGET pullimages 2>&1
   fi
 
   echo "☠☠☠ UPDATING ENV" 
@@ -63,14 +63,14 @@ else
   envs -r
 
   echo "☠☠☠ BUILDING SERVICES"
-  make project_name=$PROJECT_NAME target=$TARGET build 2>&1  || exit 1
+  make project_name=$PROJECT_NAME target=$TARGET build 
 
   echo "☠☠☠ STARTING SERVICES"
-  make project_name=$PROJECT_NAME target=$TARGET service 2>&1  || exit 1
+  make project_name=$PROJECT_NAME target=$TARGET service
   
   if [ "$DEPLOY_TYPE" == "initialize" ]; then
     echo "☠☠☠ POST INSTALL SCRIPT" 
-    make project_name=$PROJECT_NAME target=$TARGET postinstall 2>&1  || exit 1
+    make project_name=$PROJECT_NAME target=$TARGET postinstall
   fi
   
   echo "☠☠☠ SUCCCESS SERVICES STARTED"
