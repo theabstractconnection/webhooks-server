@@ -26,10 +26,10 @@ const RepositoryOwner = styled.a`
 ${tw`text-2xl text-gray-900`}
 `
 
-const Repository = props => {
+const Repository = () => {
   const [deployment, expanded] = useContext(DeploymentContext)
   const {
-    data: { repository },
+    data: { repository, zen },
   } = deployment
 
   return (
@@ -58,7 +58,7 @@ const Repository = props => {
         <Summary />
       </RepositoryMainInfosWrapper>
       <p>{repository.description}</p>
-      <i>{deployment.data.zen}</i>
+      <i>{zen}</i>
     </RepositoryItem>
   )
 }
