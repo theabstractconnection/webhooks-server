@@ -117,7 +117,6 @@ const handleProcessOutput = (type, deploymentProcess, fullLog, deployment) => {
   deploymentProcess[type].setEncoding('utf8')
   deploymentProcess[type].on('data', data => {
     formatLogData(data).forEach(d => {
-      console.log(d)
       appendToProcessLog(fullLog, type, d)
       broadcastLog(deployment._id, type, d)
       if (type === 'stdout' && d.includes('☠☠☠ SUCCCESS SERVICES STARTED')) {
