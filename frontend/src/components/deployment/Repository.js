@@ -16,7 +16,7 @@ const RepositoryMainInfos = styled.div`
   ${tw`flex flex-row items-baseline mb-1 leading-none flex-wrap`}
 `
 const RepositoryMainInfosWrapper = styled.div`
-  ${tw`flex`}
+  ${tw`flex justify-between`}
 `
 const RepositoryName = styled.a`
   ${tw`text-gray-900 font-bold text-3xl`}
@@ -34,7 +34,7 @@ const Repository = props => {
 
   return (
     <RepositoryItem expanded={expanded}>
-      <RepositoryMainInfosWrapper className="flex justify-between flex-wrap">
+      <RepositoryMainInfosWrapper>
         <RepositoryMainInfos>
           <RepositoryName
             href={repository.html_url}
