@@ -30,14 +30,14 @@ const User = () => {
   } = deployment
   return (
     <UserItem expanded={expanded}>
-      {console.log(deployment)}
+      {/* {console.log(pusher)} */}
       <AvatarItem src={sender.avatar_url} alt="User" />
-      {pusher && (
+      {/* {pusher && ( */}
         <UserInfo>
           <Login>{pusher.name}</Login>
           <Email>{pusher.email}</Email>
         </UserInfo>
-      )}
+      {/* )} */}
     </UserItem>
   )
 }
