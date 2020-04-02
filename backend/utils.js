@@ -1,7 +1,7 @@
 import childProcess from 'child_process'
 import queryString from 'query-string'
 import Deployment from './domain/deployment/deployment.model'
-import { aWss } from '../server'
+import { aWss } from './server'
 
 const deliveryHeaderName = 'X-GitHub-Delivery'
 
