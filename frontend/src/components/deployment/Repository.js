@@ -16,7 +16,7 @@ const RepositoryMainInfos = styled.div`
   ${tw`flex flex-row items-baseline mb-1 leading-none flex-wrap`}
 `
 const RepositoryMainInfosWrapper = styled.div`
-  ${tw`flex flex-wrap`}
+  ${tw`flex`}
 `
 const RepositoryName = styled.a`
   ${tw`text-gray-900 font-bold text-3xl`}
