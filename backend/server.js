@@ -14,7 +14,8 @@ const PORT = process.env.PORT || 9000
 
 const expressWsExpress = expressWs(express())
 var app = expressWsExpress.app
-const aWss = expressWsExpress.getWss()
+
+export const aWss = expressWsExpress.getWss()
 
 let deploymentRouter = express.Router()
 
@@ -48,14 +49,12 @@ deploymentRoutes(deploymentRouter)
 app.post('/api/deploy', verifyPostData, (req, res) => {
   const sender = req.body.sender.login
   const organization = req.body.repository.owner.login
-  const repositoryName = req.body.repository.name
-  const repositorySshUrl = req.body.repository.ssh_url
-
+  
   if (
     sender === process.env.GITHUB_USERNAME &&
     organization === process.env.GITHUB_ORGANIZATION
   ) {
-    deploy(req, res, repositoryName, repositorySshUrl, aWss)
+    deploy(req, res)
   }
 })
 
