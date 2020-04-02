@@ -55,7 +55,7 @@ else
 
   if [ "$DEPLOY_TYPE" == "initialize" ]; then
     echo "☠☠☠ PULLING SERVICE'S IMAGES" 
-    make project_name=$PROJECT_NAME target=$TARGET pullimages 2>&1
+    make project_name=$PROJECT_NAME target=$TARGET pullimages 2>&1 || exit 1
   fi
 
   echo "☠☠☠ UPDATING ENV" 
