@@ -115,11 +115,11 @@ const updateDeployment = (deployment, logs, status) => {
 
 const catchWronglyConsideredAsStderr = (d, type) => {
   const mappings = ['is up-to-date', 'Building']
-  let type = type
+  let rightType
   mappings.forEach(m => {
-    type = d.includes(m) ? 'stdout' : type
+    rightType = d.includes(m) ? 'stdout' : type
   })
-  return type
+  return rightType
 }
 
 const handleProcessOutput = (type, deploymentProcess, fullLog, deployment) => {
