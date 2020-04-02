@@ -18,7 +18,7 @@ export const CardContent = styled.div`
 `
 
 export const CardContentHeader = styled.div`
-  ${tw`p-4 flex flex-col justify-between leading-normal w-full relative`}
+  ${tw`p-4 flex flex-col leading-normal w-full relative`}
 `
 
 export const CardContentFooter = styled.div`

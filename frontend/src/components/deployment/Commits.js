@@ -4,11 +4,11 @@ import tw from 'tailwind.macro'
 import { DeploymentContext } from '../Deployment'
 
 const CommitsItem = styled.div`
-  ${tw``}
+  ${tw`flex-grow`}
 `
 
 const CommitItem = styled.div`
-  ${tw`mb-3 flex-grow`}
+  ${tw`mb-3`}
 `
 
 const Commit = props => {

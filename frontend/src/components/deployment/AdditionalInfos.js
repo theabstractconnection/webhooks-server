@@ -8,7 +8,7 @@ import User from './User'
 const AdditionalInfosItem = styled.div`
   ${props =>
     !props.expanded ? tw`flex-row items-center justify-between` : tw`flex-col`}
-  ${tw`flex text-sm font-medium align-middle flex-grow`}
+  ${tw`flex flex-grow text-sm font-medium align-middle`}
 `
 
 const DeploymentId = styled.div`
