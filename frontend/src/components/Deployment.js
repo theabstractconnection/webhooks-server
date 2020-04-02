@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext, useRef } from 'react'
+import React, { useState, createContext, useContext } from 'react'
 import PropTypes from 'prop-types'
 
 import {
@@ -30,14 +30,13 @@ export const DeploymentContextProvider = props => {
 
 export const Deployment = props => {
   const [deployment, expanded, setExpanded] = useContext(DeploymentContext)
-  const deploymentRef = useRef(null);
-  const handleExpand = () => {deploymentRef.current.setActive; setExpanded(!expanded)}
+  const handleExpand = () => setExpanded(!expanded)
   const {
     data: { repository },
   } = deployment
 
   return (
-    <Card className="Deployment" ref={deploymentRef}>
+    <Card className="Deployment">
       <CardPicture
         imageSrc={repository.owner.avatar_url}
         onClick={handleExpand}
