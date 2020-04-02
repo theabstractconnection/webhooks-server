@@ -41,7 +41,6 @@ function App() {
   )
 
   const [deployments, setDeployments] = useState([])
-  const [lastDeploymentMessage, setLastDeploymentMessage] = useState('')
   const [messages, setMessages] = useState([])
   const [socketUrl, setSocketUrl] = useState(buildSocketUrl())
   const [messageHistory, setMessageHistory] = useState([])
@@ -57,7 +56,7 @@ function App() {
       // console.log(data.deployments)
     }
     fetchDeployments()
-  }, [lastDeploymentMessage])
+  }, [])
 
   useEffect(() => {
     if (lastMessage !== null) {
@@ -69,7 +68,6 @@ function App() {
       setMessageHistory(prev => prev.concat(lastMessageData))
 
       if (lastMessageData.event === 'deploy') {
-        setLastDeploymentMessage(lastMessageData.deployment)
         setDeployments(prev => [lastMessageData.deployment].concat(prev))
       }
       if (lastMessageData.event === 'log') {
