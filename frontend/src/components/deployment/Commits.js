@@ -8,7 +8,7 @@ const CommitsItem = styled.div`
 `
 
 const CommitItem = styled.div`
-  ${tw`mb-3`}
+  ${tw`mb-3 flex-grow`}
 `
 
 const Commit = props => {
