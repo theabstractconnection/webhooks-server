@@ -19,7 +19,6 @@ export const DeploymentContext = createContext()
 // Create a provider for components to consume and subscribe to changes
 export const DeploymentContextProvider = props => {
   const { deployment } = props
-
   const [expanded, setExpanded] = useState(false)
 
   return (
@@ -31,13 +30,14 @@ export const DeploymentContextProvider = props => {
 
 export const Deployment = props => {
   const [deployment, expanded, setExpanded] = useContext(DeploymentContext)
-  const handleExpand = () => setExpanded(!expanded)
+  const deploymentRef = useRef(null);
+  const handleExpand = () => {deploymentRef.setActive(); setExpanded(!expanded)}
   const {
     data: { repository },
   } = deployment
 
   return (
-    <Card className="Deployment">
+    <Card className="Deployment" ref={deploymentRef}>
       <CardPicture
         imageSrc={repository.owner.avatar_url}
         onClick={handleExpand}
