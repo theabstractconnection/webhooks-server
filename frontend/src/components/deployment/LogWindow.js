@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
 import { DeploymentContext } from '../Deployment'
@@ -44,11 +44,19 @@ const Log = props => {
 const LogWindow = () => {
   const [deployment] = useContext(DeploymentContext)
   const { logs } = deployment
+  const logWindowRef = useRef(null)
+
+  useEffect(() => {
+    if (logWindowRef.current && logWindowRef.current.lastChild){
+      let lastLog = logWindowRef.current.lastChild
+      logWindowRef.current.scrollTop = lastLog.offsetHeight + lastLog.offsetTop;
+    }
+  }, [logWindowRef])
 
   return (
     <LogWindowItem className="LogWindow">
       <LogWindowTitle>Logs</LogWindowTitle>
-      <LogWindowContent>
+      <LogWindowContent className="LogWindowContent" ref={logWindowRef}>
         {logs.map((log, idx) => (
           <Log log={log} key={idx} />
         ))}
