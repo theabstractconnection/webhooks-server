@@ -28,12 +28,6 @@ const Main = () => {
           </Link>
         </div>
       </div>
-      {/* <div
-        className="absolute lg:hidden top-0 left-0 w-full h-full opacity-75"
-        style={{
-          'background-image': `url(${networkPicture})`,
-        }}
-      ></div> */}
     </div>
   )
 }
