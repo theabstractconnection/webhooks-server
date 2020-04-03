@@ -106,7 +106,7 @@ function App() {
         <NavBar />
         <Switch>
         <Route path="/deployments">
-            <div id="Deployments" className="container mx-auto">
+            <div id="Deployments" className="container mx-auto min-h-screen">
               {deployments.map(deployment => {
                 return (
                   <DeploymentContextProvider

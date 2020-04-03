@@ -27,7 +27,7 @@ const NavBar = () => {
         <div className="flex justify-between items-center">
           <div className="text-2xl font-bold text-gray-800 md:text-3xl">
             <Link to="/" className="flex flex-row items-center justify-center">
-              <img src={WebHooks} className="w-12 h-12 mr-3"></img>
+              <img src={WebHooks} className="h-12 mr-3"></img>
               <span className="hidden md:block">Deployment Server</span>
             </Link>
           </div>

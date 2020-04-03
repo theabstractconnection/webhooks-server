@@ -9,6 +9,7 @@ import NginxLogo from '../assets/images/nginx.png'
 import NodeLogo from '../assets/images/node.svg'
 import ExpressLogo from '../assets/images/express.png'
 import MongoDbLogo from '../assets/images/mongodb.svg'
+import WebSocketLogo from '../assets/images/websocket.png'
 
 import JSLogo from '../assets/images/js.png'
 import ReactLogo from '../assets/images/react.png'
@@ -70,7 +71,7 @@ const About = () => {
               Backend Server
             </div>
             <p className="text-gray-700">
-              NodeJs backend server built with ExpressJs and MongoDB
+              NodeJs backend server built with ExpressJs and MongoDB (it also spawn a websocket server to broadcast deploments and deployments logs)
             </p>
             <div className="mt-3 flex flex-row flex-wrap items-center justify-center">
               <img src={NodeLogo} className="m-3 h-20" />
@@ -82,10 +83,11 @@ const About = () => {
             <div className="text-2xl font-semibold text-gray-800">
               Frontend Application
             </div>
-            <p className="text-gray-700">Create React App with Tailwind CSS</p>
+            <p className="text-gray-700">Create React App  that use Websocket (to provide live logging capabilities). Styling made with Tailwind CSS</p>
             <div className="mt-3 flex flex-row flex-wrap items-center justify-center">
               <img src={JSLogo} className="m-3 h-20" />
               <img src={ReactLogo} className="m-3 h-20" />
+              <img src={WebSocketLogo} className="m-3 h-20" />
               <img src={Tailwind} className="m-3 h-20" />
             </div>
           </div>
