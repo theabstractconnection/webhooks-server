@@ -19,7 +19,7 @@ export const DeploymentContext = createContext()
 // Create a provider for components to consume and subscribe to changes
 export const DeploymentContextProvider = props => {
   const { deployment } = props
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(deployment.status === 'Pending' ? true : false)
 
   return (
     <DeploymentContext.Provider value={[deployment, expanded, setExpanded]}>
