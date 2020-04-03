@@ -6,9 +6,10 @@ import Commits from './Commits'
 import User from './User'
 
 const AdditionalInfosItem = styled.div`
-  ${tw`flex flex-grow text-sm font-medium align-middle`}
+  ${tw`flex text-sm font-medium align-middle`}
   ${props =>
-    !props.expanded ? tw`flex-row items-center justify-between` : tw`flex-col`}
+    !props.expanded ? tw`flex-row items-center justify-between` : tw`flex-col flex-grow`}
+  flex-grow: 1;
 `
 
 const DeploymentId = styled.div`

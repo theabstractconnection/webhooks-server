@@ -23,7 +23,7 @@ const About = () => {
           <div>Homemade </div>
           <div className="text-indigo-600">Webhooks deployment server</div>
         </h2>
-        <div className="mt-2 text-sm text-whitemd:text-base max-w-3xl">
+        <div className="mt-2 mb-20 text-sm text-whitemd:text-base max-w-3xl">
           <div className="mt-3 mb-6">
             <div className="text-2xl font-semibold text-gray-800">Hosting</div>
             <p className="text-gray-700">
