@@ -1,54 +1,35 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import WebHooks from '../assets/images/webhooks.png'
+import clsx from 'clsx'
+
+const NavLink = props => {
+  const { name, to, clickHandler } = props 
+  return (
+    <Link
+      to={to}
+      onClick={clickHandler}
+      className="text-center text-gray-600 rounded hover:border-b-2 hover:text-gray-800 border-gray-800 hover:font-medium py-2 px-2 md:mx-2"
+    >
+      { name }
+    </Link>
+  )
+}
 
 const NavLinks = props => {
   const { opened, setOpened } = props
+  const clickHandler = () => setOpened(false)
+
   return (
-    <React.Fragment>
-      <div className="flex flex-col md:flex-row mx-2 hidden md:block">
-        <Link
-          to="/deployments"
-          onClick={() => {
-            setOpened(false)
-          }}
-          className="text-center text-gray-600 rounded hover:border-b-2 hover:text-gray-800 border-gray-800 hover:font-medium py-2 px-2 md:mx-2"
-        >
-          Deployments
-        </Link>
-        <Link
-          to="/about"
-          onClick={() => {
-            setOpened(false)
-          }}
-          className="text-center text-gray-600 rounded hover:border-b-2 hover:text-gray-800 border-gray-800 hover:font-medium py-2 px-2 md:mx-2"
-        >
-          About
-        </Link>
-      </div>
-      {opened && (
-        <div className="flex flex-col md:flex-row mx-2 md:hidden">
-          <Link
-            to="/deployments"
-            onClick={() => {
-              setOpened(false)
-            }}
-            className="text-center text-gray-600 rounded hover:border-b-2 hover:text-gray-800 border-gray-800 hover:font-medium py-2 px-2 md:mx-2"
-          >
-            Deployments
-          </Link>
-          <Link
-            to="/about"
-            onClick={() => {
-              setOpened(false)
-            }}
-            className="text-center text-gray-600 rounded hover:border-b-2 hover:text-gray-800 border-gray-800 hover:font-medium py-2 px-2 md:mx-2"
-          >
-            About
-          </Link>
-        </div>
+    <div
+      className={clsx(
+        'flex flex-col md:flex-row mx-2',
+        opened ? 'md:hidden' : 'hidden md:block'
       )}
-    </React.Fragment>
+    >
+      <NavLink to="/deployments" name="Deployments" onClick={clickHandler} />
+      <NavLink to="/about" name="About" onClick={clickHandler} />
+    </div>
   )
 }
 const NavBar = () => {
