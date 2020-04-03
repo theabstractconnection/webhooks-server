@@ -5,7 +5,7 @@ import networkPicture from '../assets/images/network.jpg'
 const Main = () => {
   return (
     <div className="relative w-full flex items-center text-center lg:text-left px-8 md:px-12 lg:w-1/2 bg-cover">
-      <div className="z-10">
+      <div className="z-10 m-auto">
         <h2 className="text-3xl font-semibold text-gray-800 md:text-4xl">
           Homemade{' '}
           <span className="text-indigo-600">Webhooks deployment server</span>

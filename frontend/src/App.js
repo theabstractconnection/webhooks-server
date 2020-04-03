@@ -6,14 +6,16 @@ import axios from 'axios'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons'
+import { faAngleDown, faAngleUp, faAt, faHeart, faCopyright } from '@fortawesome/free-solid-svg-icons'
 
 import './App.css'
 import NavBar from './components/NavBar'
 import Header from './components/Header'
+import About from './components/About'
+import Footer from './components/Footer'
 import { Deployment, DeploymentContextProvider } from './components/Deployment'
 
-library.add(fab, faAngleDown, faAngleUp)
+library.add(fab, faAngleDown, faAngleUp, faAt, faHeart, faCopyright)
 
 const PROXY_PORT = 9000
 
@@ -63,7 +65,7 @@ function App() {
       const lastMessageData = JSON.parse(lastMessage.data)
       // const currentWebsocketUrl = getWebSocket().url
       // console.log('received a message from ', currentWebsocketUrl)
-      // console.log(lastMessageData)
+      console.log(lastMessageData.deployment)
 
       setMessageHistory(prev => prev.concat(lastMessageData))
 
@@ -117,10 +119,14 @@ function App() {
               })}
             </div>
           </Route>
+          <Route path="/about">
+            <About />
+          </Route>
           <Route path="/">
             <Header />
           </Route>
         </Switch>
+        <Footer />
       </Router>
 
       {/* <div>

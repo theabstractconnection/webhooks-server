@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import WebHooks from '../assets/images/webhooks.png'
 
-const NavLinks = props => {
+const NavLinks = () => {
   return (
     <div className="flex flex-col md:flex-row hidden md:block -mx-2">
       <Link
@@ -19,13 +20,16 @@ const NavLinks = props => {
     </div>
   )
 }
-const NavBar = props => {
+const NavBar = () => {
   return (
     <nav className="bg-white shadow-lg">
       <div className="md:flex items-center justify-between py-2 px-8 md:px-12">
         <div className="flex justify-between items-center">
           <div className="text-2xl font-bold text-gray-800 md:text-3xl">
-            <Link to="#">TAC Deployment Server</Link>
+            <Link to="/" className="flex flex-row items-center justify-center">
+              <img src={WebHooks} className="w-12 h-12 mr-3"></img>
+              <span className="hidden md:block">Deployment Server</span>
+            </Link>
           </div>
           <div className="md:hidden">
             <button
