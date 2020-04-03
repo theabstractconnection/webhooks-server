@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Webhooks Deployment Server",
+  "name": "The Abstract Connection Webhooks Deployment Server",
   "icons": [
     {
       "src": "favicon.ico",
