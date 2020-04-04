@@ -17,15 +17,21 @@ import AdditionalInfos from './deployment/AdditionalInfos'
 export const DeploymentContext = createContext()
 
 // Create a provider for components to consume and subscribe to changes
-export const DeploymentContextProvider = props => {
-  const { deployment } = props
-  const [expanded, setExpanded] = useState(deployment.status === 'Pending' ? true : false)
+export const DeploymentContextProvider = (props) => {
+  const { deployment, children } = props
+  const [expanded, setExpanded] = useState(
+    deployment.status === 'Pending' ? true : false
+  )
 
   return (
     <DeploymentContext.Provider value={[deployment, expanded, setExpanded]}>
-      {props.children}
+      {children ? children : ''}
     </DeploymentContext.Provider>
   )
+}
+
+DeploymentContextProvider.propTypes = {
+  deployment: PropTypes.object.isRequired,
 }
 
 export const Deployment = () => {
@@ -59,5 +65,5 @@ Deployment.propTypes = {
     webhookDeliveryId: PropTypes.string.isRequired,
     data: PropTypes.object.isRequired,
     status: PropTypes.string.isRequired,
-  }),
+  }).isRequired,
 }

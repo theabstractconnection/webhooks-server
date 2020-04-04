@@ -4,13 +4,13 @@ import tw from 'tailwind.macro'
 export const Card = styled.div`
   ${tw`text-xlmax-w-sm w-full lg:max-w-full lg:flex my-6 
        shadow-md opacity-75 hover:opacity-100 active:opacity-100`}
-  ${props => props.expanded ? "opacity:1;" : ""}
+  ${(props) => (props.expanded ? 'opacity:1;' : '')}
 `
 
 export const CardPicture = styled.div`
   ${tw`flex h-48 lg:h-auto lg:w-48 flex-none bg-cover bg-center rounded-t 
        lg:rounded-t-none lg:rounded-l text-center overflow-hidden`}
-  ${props => `background-image: url('${props.imageSrc}') `}
+  ${(props) => `background-image: url('${props.imageSrc}') `}
 `
 
 export const CardContent = styled.div`

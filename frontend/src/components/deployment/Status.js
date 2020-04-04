@@ -5,7 +5,7 @@ import tw from 'tailwind.macro'
 import { DeploymentContext } from '../Deployment'
 
 const StatusItem = styled.span`
-  ${props =>
+  ${(props) =>
     props.status === 'Pending'
       ? tw`bg-blue-500` //text-blue-500 bg-blue-100
       : props.status === 'Success'

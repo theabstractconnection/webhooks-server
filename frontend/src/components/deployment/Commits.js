@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
 import { DeploymentContext } from '../Deployment'
@@ -12,7 +13,7 @@ const CommitItem = styled.div`
   ${tw`mb-3`}
 `
 
-const Commit = props => {
+const Commit = (props) => {
   const { commit } = props
 
   return (
@@ -24,6 +25,14 @@ const Commit = props => {
   )
 }
 
+Commit.propTypes = {
+  commit: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired,
+  }).isRequired,
+}
+
 const Commits = () => {
   const [deployment] = useContext(DeploymentContext)
   const {
@@ -33,6 +42,7 @@ const Commits = () => {
   return (
     <CommitsItem>
       {commits &&
+        /*eslint-disable-next-line*/
         commits.map((commit, idx) => <Commit commit={commit} key={idx} />)}
     </CommitsItem>
   )

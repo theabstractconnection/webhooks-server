@@ -1,30 +1,37 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import WebHooks from '../assets/images/webhooks.png'
 import clsx from 'clsx'
 
-const NavLink = props => {
-  const { name, to, clickHandler } = props 
+const NavLink = (props) => {
+  const { name, to, clickHandler } = props
   return (
     <Link
       to={to}
       onClick={clickHandler}
       className="text-center text-gray-600 rounded hover:border-b-2 hover:text-gray-800 border-gray-800 hover:font-medium py-2 px-2 md:mx-2"
     >
-      { name }
+      {name}
     </Link>
   )
 }
 
-const NavLinks = props => {
-  const { opened, setOpened } = props
+NavLink.propTypes = {
+  name: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
+  clickHandler: PropTypes.func,
+}
+
+const NavLinks = (props) => {
+  const { isOpened, setOpened } = props
   const clickHandler = () => setOpened(false)
 
   return (
     <div
       className={clsx(
         'flex flex-col md:flex-row mx-2',
-        opened ? 'md:hidden' : 'hidden md:block'
+        isOpened ? 'md:hidden' : 'hidden md:block'
       )}
     >
       <NavLink to="/deployments" name="Deployments" onClick={clickHandler} />
@@ -32,8 +39,14 @@ const NavLinks = props => {
     </div>
   )
 }
+
+NavLinks.propTypes = {
+  isOpened: PropTypes.bool.isRequired,
+  setOpened: PropTypes.func.isRequired,
+}
+
 const NavBar = () => {
-  const [opened, setOpened] = useState(false)
+  const [isOpened, setOpened] = useState(false)
 
   return (
     <nav className="bg-white shadow-lg">
@@ -41,11 +54,15 @@ const NavBar = () => {
         <div className="flex justify-between items-center">
           <div className="text-2xl font-bold text-gray-800 md:text-3xl">
             <Link to="/" className="flex flex-row items-center justify-center">
-              <img src={WebHooks} className="h-12 mr-3"></img>
+              <img
+                src={WebHooks}
+                alt="Webhooks Logo"
+                className="h-12 mr-3"
+              ></img>
               <span className="hidden md:block">Deployment Server</span>
             </Link>
           </div>
-          <div className="md:hidden" onClick={() => setOpened(!opened)}>
+          <div className="md:hidden" onClick={() => setOpened(!isOpened)}>
             <button
               type="button"
               className="block text-gray-800 hover:text-gray-700 focus:text-gray-700 focus:outline-none"
@@ -60,7 +77,7 @@ const NavBar = () => {
             </button>
           </div>
         </div>
-        <NavLinks opened={opened} setOpened={setOpened} />
+        <NavLinks isOpened={isOpened} setOpened={setOpened} />
       </div>
     </nav>
   )

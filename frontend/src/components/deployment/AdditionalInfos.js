@@ -8,12 +8,14 @@ import User from './User'
 const AdditionalInfosItem = styled.div`
   flex-grow: 1;
   ${tw`flex text-sm font-medium align-middle`}
-  ${props =>
-    !props.expanded ? tw`flex-row items-center justify-between` : tw`flex-col flex-grow`}
+  ${(props) =>
+    !props.expanded
+      ? tw`flex-row items-center justify-between`
+      : tw`flex-col flex-grow`}
 `
 
 const DeploymentId = styled.div`
- ${tw`mb-2`};
+  ${tw`mb-2`};
 `
 
 const AdditionalInfos = () => {

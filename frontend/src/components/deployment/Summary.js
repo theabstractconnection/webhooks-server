@@ -12,7 +12,7 @@ const SummaryItem = styled.div`
 const Summary = () => {
   return (
     <SummaryItem>
-      <Status/>
+      <Status />
       {/* <Expand/> */}
     </SummaryItem>
   )

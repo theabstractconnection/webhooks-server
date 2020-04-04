@@ -1,0 +1,26 @@
+{
+  "extends": ["react-app", "plugin:prettier/recommended"],
+  "rules": {
+    "react/boolean-prop-naming": [
+      1,
+      { "validateNested": true, "rule": "^(is|has)[A-Z]([A-Za-z0-9]?)+" }
+    ], // Enforce consistent boolean naming
+    "react/destructuring-assignment": [1, "always"],
+    "react/function-component-definition": [
+      1,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "function-expression"
+      }
+    ],
+    "react/no-adjacent-inline-elements": [1],
+    "react/no-array-index-key": [1],
+    "react/no-danger": [1],
+    "react/no-deprecated": [1],
+    "react/no-this-in-sfc": [1],
+    "react/prefer-stateless-function": [1],
+    "react/prop-types": [1, { "ignore": ["children"] }],
+    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
+  }
+}

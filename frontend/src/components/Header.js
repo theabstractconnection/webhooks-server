@@ -36,15 +36,14 @@ const ClipSplash = () => {
   return (
     <div
       className="hidden lg:block lg:w-1/2"
-      style={{ 'clip-path': 'polygon(10% 0, 100% 0%, 100% 100%, 0 100%)' }}
+      style={{ clipPath: 'polygon(10% 0, 100% 0%, 100% 100%, 0 100%)' }}
     >
       <div
         className="h-full object-cover bg-cover opacity-75"
         style={{
-          'background-image': `url(${networkPicture})`,
+          backgroundImage: `url(${networkPicture})`,
         }}
-      >
-      </div>
+      ></div>
     </div>
   )
 }

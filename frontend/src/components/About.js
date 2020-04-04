@@ -13,7 +13,7 @@ import WebSocketLogo from '../assets/images/websocket.png'
 
 import JSLogo from '../assets/images/js.png'
 import ReactLogo from '../assets/images/react.png'
-import Tailwind from '../assets/images/tailwind.png'
+import TailwindLogo from '../assets/images/tailwind.png'
 
 const About = () => {
   return (
@@ -28,7 +28,7 @@ const About = () => {
             <div className="text-2xl font-semibold text-gray-800">Hosting</div>
             <p className="text-gray-700">
               Hosted on automated aws ec2 instances (setup of instances is fully
-              automated by {' '}
+              automated by{' '}
               <a
                 className="text-blue-400 underline hover:font-semibold"
                 href="https://github.com/theabstractconnection/configs/blob/master/ec2-setup.sh"
@@ -39,7 +39,7 @@ const About = () => {
               )
             </p>
             <div className="mt-3 flex flex-row flex-wrap items-center justify-center">
-              <img src={AWSLogo} className="m-3 h-20" />
+              <img src={AWSLogo} alt="Logo" className="m-3 h-20" />
             </div>
           </div>
           <div className="mt-3 mb-6">
@@ -47,7 +47,7 @@ const About = () => {
               Infrastructure
             </div>
             <p className="text-gray-700">
-              Custom Bash script that trigger Make commands (see {' '}
+              Custom Bash script that trigger Make commands (see{' '}
               <a
                 className="text-blue-400 underline hover:font-semibold"
                 href="https://github.com/theabstractconnection/docker-compose-makefile"
@@ -60,10 +60,10 @@ const About = () => {
               with Nginx reverse proxy
             </p>
             <div className="mt-3 flex flex-row flex-wrap items-center justify-center">
-              <img src={BashLogo} className="m-3 h-20" />
-              <img src={MakeLogo} className="m-3 h-20" />
-              <img src={DockerLogo} className="m-3 h-20" />
-              <img src={NginxLogo} className="m-3 h-20" />
+              <img src={BashLogo} alt="Bash Logo" className="m-3 h-20" />
+              <img src={MakeLogo} alt="Make Logo" className="m-3 h-20" />
+              <img src={DockerLogo} alt="Docker Logo" className="m-3 h-20" />
+              <img src={NginxLogo} alt="Nginx Logo" className="m-3 h-20" />
             </div>
           </div>
           <div className="mt-3 mb-6">
@@ -71,24 +71,37 @@ const About = () => {
               Backend Server
             </div>
             <p className="text-gray-700">
-              NodeJs backend server built with ExpressJs and MongoDB (it also spawn a websocket server to broadcast deploments and deployments logs)
+              NodeJs backend server built with ExpressJs and MongoDB (it also
+              spawn a websocket server to broadcast deploments and deployments
+              logs)
             </p>
             <div className="mt-3 flex flex-row flex-wrap items-center justify-center">
-              <img src={NodeLogo} className="m-3 h-20" />
-              <img src={ExpressLogo} className="m-3 h-20" />
-              <img src={MongoDbLogo} className="m-3 h-20" />
+              <img src={NodeLogo} alt="Node Logo" className="m-3 h-20" />
+              <img src={ExpressLogo} alt="Express Logo" className="m-3 h-20" />
+              <img src={MongoDbLogo} alt="MongoDB Logo" className="m-3 h-20" />
             </div>
           </div>
           <div className="mt-3 mb-6">
             <div className="text-2xl font-semibold text-gray-800">
               Frontend Application
             </div>
-            <p className="text-gray-700">Create React App  that use Websocket (to provide live logging capabilities). Styling made with Tailwind CSS</p>
+            <p className="text-gray-700">
+              Create React App that use Websocket (to provide live logging
+              capabilities). Styling made with Tailwind CSS
+            </p>
             <div className="mt-3 flex flex-row flex-wrap items-center justify-center">
-              <img src={JSLogo} className="m-3 h-20" />
-              <img src={ReactLogo} className="m-3 h-20" />
-              <img src={WebSocketLogo} className="m-3 h-20" />
-              <img src={Tailwind} className="m-3 h-20" />
+              <img src={JSLogo} alt="JS Logo" className="m-3 h-20" />
+              <img src={ReactLogo} alt="React Logo" className="m-3 h-20" />
+              <img
+                src={WebSocketLogo}
+                alt="WebSocket Logo"
+                className="m-3 h-20"
+              />
+              <img
+                src={TailwindLogo}
+                alt="Tailwind Logo"
+                className="m-3 h-20"
+              />
             </div>
           </div>
           <div className="flex justify-center lg:justify-start mt-6"></div>

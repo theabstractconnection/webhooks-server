@@ -1,22 +1,25 @@
 const {
-  // addBabelPlugin,
+  addBabelPlugin,
   addDecoratorsLegacy,
   addPostcssPlugins,
   disableEsLint,
+  useEslintRc,
   override,
   overrideDevServer,
   watchAll,
 } = require('customize-cra')
 
 // const webpack = require('webpack')
-
 module.exports = {
   webpack: override(
     // enable legacy decorators babel plugin
     addDecoratorsLegacy(),
 
     // disable eslint in webpack
-    disableEsLint(),
+    // disableEsLint(),
+    // use eslintrc config file
+    useEslintRc('./.eslintrc'),
+    // addBabelPlugin(['emotion']),
     // addBabelPlugin([
     //   'tailwind-components',
     //   {
@@ -36,10 +39,7 @@ module.exports = {
         },
         browsers: ['> 1%', 'last 2 versions', 'Firefox ESR'],
       }),
-      // require('autoprefixer'),
     ])
   ),
-  devServer: overrideDevServer(
-    watchAll()
-  ),
+  devServer: overrideDevServer(watchAll()),
 }

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useRef } from 'react'
+import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
 import { DeploymentContext } from '../Deployment'
@@ -23,15 +24,15 @@ const LogWindowContent = styled.div`
 `
 
 const LogItem = styled.div`
-  ${props => (props.type === 'stdout' ? tw`text-white` : tw`text-red-400`)}
+  ${(props) => (props.type === 'stdout' ? tw`text-white` : tw`text-red-400`)}
   ${tw`text-xs font-mono`}
 `
 
 const LogContent = styled.span`
-  word-break: break-all
+  word-break: break-all;
 `
 
-const Log = props => {
+const Log = (props) => {
   const { log } = props
 
   return (
@@ -41,15 +42,22 @@ const Log = props => {
   )
 }
 
+Log.propTypes = {
+  log: PropTypes.shape({
+    type: PropTypes.string.isRequired,
+    output: PropTypes.string.isRequired,
+  }).isRequired,
+}
+
 const LogWindow = () => {
   const [deployment] = useContext(DeploymentContext)
   const { logs } = deployment
   const logWindowRef = useRef(null)
 
   useEffect(() => {
-    if (logWindowRef.current && logWindowRef.current.lastChild){
+    if (logWindowRef.current && logWindowRef.current.lastChild) {
       let lastLog = logWindowRef.current.lastChild
-      logWindowRef.current.scrollTop = lastLog.offsetHeight + lastLog.offsetTop;
+      logWindowRef.current.scrollTop = lastLog.offsetHeight + lastLog.offsetTop
     }
   }, [logWindowRef])
 
@@ -58,6 +66,7 @@ const LogWindow = () => {
       <LogWindowTitle>Logs</LogWindowTitle>
       <LogWindowContent className="LogWindowContent" ref={logWindowRef}>
         {logs.map((log, idx) => (
+          /*eslint-disable-next-line*/
           <Log log={log} key={idx} />
         ))}
       </LogWindowContent>

@@ -6,7 +6,7 @@ import Summary from './Summary'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const RepositoryItem = styled.div`
-  ${props => (!props.expanded ? tw`` : tw`mb-4`)}
+  ${(props) => (!props.expanded ? tw`` : tw`mb-4`)}
   & > p,
   i {
     ${tw`text-sm text-gray-600`}
@@ -23,7 +23,7 @@ const RepositoryName = styled.a`
 `
 
 const RepositoryOwner = styled.a`
-${tw`text-2xl text-gray-900`}
+  ${tw`text-2xl text-gray-900`}
 `
 
 const Repository = () => {

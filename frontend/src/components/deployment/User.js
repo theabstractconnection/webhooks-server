@@ -4,7 +4,7 @@ import tw from 'tailwind.macro'
 import { DeploymentContext } from '../Deployment'
 
 const UserItem = styled.div`
-  ${props =>
+  ${(props) =>
     !props.expanded ? tw`justify-end` : tw`justify-end lg:justify-start`}
   ${tw`flex items-center flex-grow items-center`}
 `

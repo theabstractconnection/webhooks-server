@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react'
+/*eslint-disable no-unused-vars*/
+import React, { useState, useEffect, useMemo } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import useWebSocket, { ReadyState } from 'react-use-websocket'
@@ -6,7 +7,13 @@ import axios from 'axios'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faAngleDown, faAngleUp, faAt, faHeart, faCopyright } from '@fortawesome/free-solid-svg-icons'
+import {
+  faAngleDown,
+  faAngleUp,
+  faAt,
+  faHeart,
+  faCopyright,
+} from '@fortawesome/free-solid-svg-icons'
 
 import './App.css'
 import NavBar from './components/NavBar'
@@ -19,7 +26,7 @@ library.add(fab, faAngleDown, faAngleUp, faAt, faHeart, faCopyright)
 
 const PROXY_PORT = 9000
 
-function App() {
+const App = () => {
   const buildSocketUrl = () => {
     const socketProtocol =
       window.location.protocol === 'https:' ? 'wss:' : 'ws:'
@@ -35,7 +42,7 @@ function App() {
 
   const options = useMemo(
     () => ({
-      shouldReconnect: closeEvent => true,
+      shouldReconnect: () => true,
       reconnectAttempts: 10,
       reconnectInterval: 3000,
     }),
@@ -43,9 +50,7 @@ function App() {
   )
 
   const [deployments, setDeployments] = useState([])
-  const [messages, setMessages] = useState([])
   const [socketUrl, setSocketUrl] = useState(buildSocketUrl())
-  const [messageHistory, setMessageHistory] = useState([])
   const [sendMessage, lastMessage, readyState, getWebSocket] = useWebSocket(
     socketUrl,
     options
@@ -67,14 +72,12 @@ function App() {
       // console.log('received a message from ', currentWebsocketUrl)
       console.log(lastMessageData.deployment)
 
-      setMessageHistory(prev => prev.concat(lastMessageData))
-
       if (lastMessageData.event === 'deploy') {
-        setDeployments(prev => [lastMessageData.deployment].concat(prev))
+        setDeployments((prev) => [lastMessageData.deployment].concat(prev))
       }
       if (lastMessageData.event === 'log') {
-        setDeployments(prev =>
-          prev.map(dep => {
+        setDeployments((prev) =>
+          prev.map((dep) => {
             return dep._id === lastMessageData._id
               ? { ...dep, logs: dep.logs.concat([lastMessageData.log]) }
               : dep
@@ -82,8 +85,8 @@ function App() {
         )
       }
       if (lastMessageData.event === 'status') {
-        setDeployments(prev =>
-          prev.map(dep => {
+        setDeployments((prev) =>
+          prev.map((dep) => {
             return dep._id === lastMessageData._id
               ? { ...dep, status: lastMessageData.status }
               : dep
@@ -105,15 +108,15 @@ function App() {
       <Router>
         <NavBar />
         <Switch>
-        <Route path="/deployments">
+          <Route path="/deployments">
             <div id="Deployments" className="container mx-auto min-h-screen">
-              {deployments.map(deployment => {
+              {deployments.map((deployment) => {
                 return (
                   <DeploymentContextProvider
                     deployment={deployment}
                     key={deployment._id}
                   >
-                    <Deployment/>
+                    <Deployment />
                   </DeploymentContextProvider>
                 )
               })}

@@ -6,7 +6,7 @@ const Footer = () => {
     <nav className="bg-white shadow-lg">
       <div className="py-2 px-8 md:px-12">
         <div className="flex flex-row flex-wrap items-center justify-between ext-md text-gray-800">
-        <div className="text-center w-full md:w-auto">
+          <div className="text-center w-full md:w-auto">
             <FontAwesomeIcon icon="copyright" className="mr-1" />
             <span>The Abstract Connection 2020</span>
           </div>
