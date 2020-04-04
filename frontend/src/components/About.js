@@ -1,19 +1,17 @@
 import React from 'react'
+
 import AWSLogo from '../assets/images/aws.png'
-
 import BashLogo from '../assets/images/bash.png'
-import MakeLogo from '../assets/images/make.png'
 import DockerLogo from '../assets/images/docker.png'
-import NginxLogo from '../assets/images/nginx.png'
-
-import NodeLogo from '../assets/images/node.svg'
 import ExpressLogo from '../assets/images/express.png'
-import MongoDbLogo from '../assets/images/mongodb.svg'
-import WebSocketLogo from '../assets/images/websocket.png'
-
 import JSLogo from '../assets/images/js.png'
+import MakeLogo from '../assets/images/make.png'
+import MongoDbLogo from '../assets/images/mongodb.svg'
+import NginxLogo from '../assets/images/nginx.png'
+import NodeLogo from '../assets/images/node.svg'
 import ReactLogo from '../assets/images/react.png'
 import TailwindLogo from '../assets/images/tailwind.png'
+import WebSocketLogo from '../assets/images/websocket.png'
 
 const About = () => {
   return (
@@ -39,7 +37,7 @@ const About = () => {
               )
             </p>
             <div className="mt-3 flex flex-row flex-wrap items-center justify-center">
-              <img src={AWSLogo} alt="Logo" className="m-3 h-20" />
+              <img alt="Logo" className="m-3 h-20" src={AWSLogo} />
             </div>
           </div>
           <div className="mt-3 mb-6">
@@ -60,10 +58,10 @@ const About = () => {
               with Nginx reverse proxy
             </p>
             <div className="mt-3 flex flex-row flex-wrap items-center justify-center">
-              <img src={BashLogo} alt="Bash Logo" className="m-3 h-20" />
-              <img src={MakeLogo} alt="Make Logo" className="m-3 h-20" />
-              <img src={DockerLogo} alt="Docker Logo" className="m-3 h-20" />
-              <img src={NginxLogo} alt="Nginx Logo" className="m-3 h-20" />
+              <img alt="Bash Logo" className="m-3 h-20" src={BashLogo} />
+              <img alt="Make Logo" className="m-3 h-20" src={MakeLogo} />
+              <img alt="Docker Logo" className="m-3 h-20" src={DockerLogo} />
+              <img alt="Nginx Logo" className="m-3 h-20" src={NginxLogo} />
             </div>
           </div>
           <div className="mt-3 mb-6">
@@ -76,9 +74,9 @@ const About = () => {
               logs)
             </p>
             <div className="mt-3 flex flex-row flex-wrap items-center justify-center">
-              <img src={NodeLogo} alt="Node Logo" className="m-3 h-20" />
-              <img src={ExpressLogo} alt="Express Logo" className="m-3 h-20" />
-              <img src={MongoDbLogo} alt="MongoDB Logo" className="m-3 h-20" />
+              <img alt="Node Logo" className="m-3 h-20" src={NodeLogo} />
+              <img alt="Express Logo" className="m-3 h-20" src={ExpressLogo} />
+              <img alt="MongoDB Logo" className="m-3 h-20" src={MongoDbLogo} />
             </div>
           </div>
           <div className="mt-3 mb-6">
@@ -90,17 +88,17 @@ const About = () => {
               capabilities). Styling made with Tailwind CSS
             </p>
             <div className="mt-3 flex flex-row flex-wrap items-center justify-center">
-              <img src={JSLogo} alt="JS Logo" className="m-3 h-20" />
-              <img src={ReactLogo} alt="React Logo" className="m-3 h-20" />
+              <img alt="JS Logo" className="m-3 h-20" src={JSLogo} />
+              <img alt="React Logo" className="m-3 h-20" src={ReactLogo} />
               <img
-                src={WebSocketLogo}
                 alt="WebSocket Logo"
                 className="m-3 h-20"
+                src={WebSocketLogo}
               />
               <img
-                src={TailwindLogo}
                 alt="Tailwind Logo"
                 className="m-3 h-20"
+                src={TailwindLogo}
               />
             </div>
           </div>

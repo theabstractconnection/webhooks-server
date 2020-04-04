@@ -1,5 +1,5 @@
-import React from 'react'
 import styled from '@emotion/styled'
+import React from 'react'
 import tw from 'tailwind.macro'
 
 import Status from './Status'

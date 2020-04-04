@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+
 import networkPicture from '../assets/images/network.jpg'
 
 const Main = () => {

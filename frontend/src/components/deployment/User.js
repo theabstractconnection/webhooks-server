@@ -1,6 +1,7 @@
-import React, { useContext } from 'react'
 import styled from '@emotion/styled'
+import React, { useContext } from 'react'
 import tw from 'tailwind.macro'
+
 import { DeploymentContext } from '../Deployment'
 
 const UserItem = styled.div`
@@ -30,7 +31,7 @@ const User = () => {
   } = deployment
   return (
     <UserItem expanded={expanded}>
-      <AvatarItem src={sender.avatar_url} alt="User" />
+      <AvatarItem alt="User" src={sender.avatar_url} />
       {pusher && (
         <UserInfo>
           <Login>{pusher.name}</Login>

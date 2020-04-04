@@ -1,9 +1,10 @@
-import React, { useContext } from 'react'
 import styled from '@emotion/styled'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useContext } from 'react'
 import tw from 'tailwind.macro'
+
 import { DeploymentContext } from '../Deployment'
 import Summary from './Summary'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const RepositoryItem = styled.div`
   ${(props) => (!props.expanded ? tw`` : tw`mb-4`)}
@@ -38,8 +39,8 @@ const Repository = () => {
         <RepositoryMainInfos>
           <RepositoryName
             href={repository.html_url}
-            target="_blank"
             rel="noopener noreferrer"
+            target="_blank"
           >
             {repository.name}
           </RepositoryName>
@@ -49,8 +50,8 @@ const Repository = () => {
           />
           <RepositoryOwner
             href={repository.html_url}
-            target="_blank"
             rel="noopener noreferrer"
+            target="_blank"
           >
             {repository.owner.login}
           </RepositoryOwner>

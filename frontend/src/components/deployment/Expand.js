@@ -1,14 +1,15 @@
-import React, { useContext } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { DeploymentContext } from '../Deployment'
 import styled from '@emotion/styled'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useContext } from 'react'
 import tw from 'tailwind.macro'
+
+import { DeploymentContext } from '../Deployment'
 
 const ExpandItem = styled.div`
   ${tw`px-2 flex items-center justify-center`}
 `
 
-const Expand = (props) => {
+const Expand = () => {
   const [expanded, handleExpand] = useContext(DeploymentContext)
 
   return (

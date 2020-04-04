@@ -1,7 +1,8 @@
-import React, { useContext, useEffect, useRef } from 'react'
-import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
+import PropTypes from 'prop-types'
+import React, { useContext, useEffect, useRef } from 'react'
 import tw from 'tailwind.macro'
+
 import { DeploymentContext } from '../Deployment'
 
 const LogWindowItem = styled.div`
@@ -44,8 +45,8 @@ const Log = (props) => {
 
 Log.propTypes = {
   log: PropTypes.shape({
-    type: PropTypes.string.isRequired,
     output: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
   }).isRequired,
 }
 
@@ -64,7 +65,7 @@ const LogWindow = () => {
   return (
     <LogWindowItem className="LogWindow">
       <LogWindowTitle>Logs</LogWindowTitle>
-      <LogWindowContent className="LogWindowContent" ref={logWindowRef}>
+      <LogWindowContent ref={logWindowRef} className="LogWindowContent">
         {logs.map((log, idx) => (
           /*eslint-disable-next-line*/
           <Log log={log} key={idx} />

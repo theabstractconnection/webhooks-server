@@ -1,16 +1,17 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
-import WebHooks from '../assets/images/webhooks.png'
 import clsx from 'clsx'
+import PropTypes from 'prop-types'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+
+import WebHooks from '../assets/images/webhooks.png'
 
 const NavLink = (props) => {
-  const { name, to, clickHandler } = props
+  const { clickHandler, name, to } = props
   return (
     <Link
-      to={to}
-      onClick={clickHandler}
       className="text-center text-gray-600 rounded hover:border-b-2 hover:text-gray-800 border-gray-800 hover:font-medium py-2 px-2 md:mx-2"
+      onClick={clickHandler}
+      to={to}
     >
       {name}
     </Link>
@@ -18,9 +19,9 @@ const NavLink = (props) => {
 }
 
 NavLink.propTypes = {
+  clickHandler: PropTypes.func,
   name: PropTypes.string.isRequired,
   to: PropTypes.string.isRequired,
-  clickHandler: PropTypes.func,
 }
 
 const NavLinks = (props) => {
@@ -34,8 +35,8 @@ const NavLinks = (props) => {
         isOpened ? 'md:hidden' : 'hidden md:block'
       )}
     >
-      <NavLink to="/deployments" name="Deployments" onClick={clickHandler} />
-      <NavLink to="/about" name="About" onClick={clickHandler} />
+      <NavLink name="Deployments" onClick={clickHandler} to="/deployments" />
+      <NavLink name="About" onClick={clickHandler} to="/about" />
     </div>
   )
 }
@@ -53,19 +54,19 @@ const NavBar = () => {
       <div className="md:flex items-center justify-between py-2 px-8 md:px-12">
         <div className="flex justify-between items-center">
           <div className="text-2xl font-bold text-gray-800 md:text-3xl">
-            <Link to="/" className="flex flex-row items-center justify-center">
+            <Link className="flex flex-row items-center justify-center" to="/">
               <img
-                src={WebHooks}
                 alt="Webhooks Logo"
                 className="h-12 mr-3"
+                src={WebHooks}
               ></img>
               <span className="hidden md:block">Deployment Server</span>
             </Link>
           </div>
           <div className="md:hidden" onClick={() => setOpened(!isOpened)}>
             <button
-              type="button"
               className="block text-gray-800 hover:text-gray-700 focus:text-gray-700 focus:outline-none"
+              type="button"
             >
               <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
                 <path

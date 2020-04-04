@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
 import styled from '@emotion/styled'
+import React, { useContext } from 'react'
 import tw from 'tailwind.macro'
 
 import { DeploymentContext } from '../Deployment'
@@ -21,7 +21,7 @@ const Status = () => {
   const { status } = deployment
   return (
     <StatusItem status={status}>
-      <i className="fas fa-star" aria-hidden="true"></i>
+      <i aria-hidden="true" className="fas fa-star"></i>
       {status}
     </StatusItem>
   )

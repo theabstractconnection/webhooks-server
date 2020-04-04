@@ -1,7 +1,8 @@
-import React, { useContext } from 'react'
-import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
+import PropTypes from 'prop-types'
+import React, { useContext } from 'react'
 import tw from 'tailwind.macro'
+
 import { DeploymentContext } from '../Deployment'
 
 const CommitsItem = styled.div`
@@ -18,7 +19,7 @@ const Commit = (props) => {
 
   return (
     <CommitItem>
-      <a href={commit.url} target="_blank" rel="noopener noreferrer">
+      <a href={commit.url} rel="noopener noreferrer" target="_blank">
         {commit.id.substring(0, 8)}: {commit.message}
       </a>
     </CommitItem>
@@ -27,9 +28,9 @@ const Commit = (props) => {
 
 Commit.propTypes = {
   commit: PropTypes.shape({
-    url: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     message: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
   }).isRequired,
 }
 

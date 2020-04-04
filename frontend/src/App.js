@@ -1,9 +1,5 @@
 /*eslint-disable no-unused-vars*/
-import React, { useState, useEffect, useMemo } from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-
-import useWebSocket, { ReadyState } from 'react-use-websocket'
-import axios from 'axios'
+import './App.css'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -11,16 +7,19 @@ import {
   faAngleDown,
   faAngleUp,
   faAt,
-  faHeart,
   faCopyright,
+  faHeart,
 } from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios'
+import React, { useEffect, useMemo, useState } from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import useWebSocket, { ReadyState } from 'react-use-websocket'
 
-import './App.css'
-import NavBar from './components/NavBar'
-import Header from './components/Header'
 import About from './components/About'
-import Footer from './components/Footer'
 import { Deployment, DeploymentContextProvider } from './components/Deployment'
+import Footer from './components/Footer'
+import Header from './components/Header'
+import NavBar from './components/NavBar'
 
 library.add(fab, faAngleDown, faAngleUp, faAt, faHeart, faCopyright)
 
@@ -109,12 +108,12 @@ const App = () => {
         <NavBar />
         <Switch>
           <Route path="/deployments">
-            <div id="Deployments" className="container mx-auto min-h-screen">
+            <div className="container mx-auto min-h-screen" id="Deployments">
               {deployments.map((deployment) => {
                 return (
                   <DeploymentContextProvider
-                    deployment={deployment}
                     key={deployment._id}
+                    deployment={deployment}
                   >
                     <Deployment />
                   </DeploymentContextProvider>

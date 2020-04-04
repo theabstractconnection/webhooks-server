@@ -1,6 +1,7 @@
-import React, { useContext } from 'react'
 import styled from '@emotion/styled'
+import React, { useContext } from 'react'
 import tw from 'tailwind.macro'
+
 import { DeploymentContext } from '../Deployment'
 import Commits from './Commits'
 import User from './User'
