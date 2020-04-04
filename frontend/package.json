@@ -26,7 +26,7 @@
     "eslint:check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "@theabstractconnection/eslint-config-tac/react"
   },
   "browserslist": {
     "production": [
@@ -41,11 +41,14 @@
     ]
   },
   "devDependencies": {
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "@emotion/core": "^10.0.28",
-    "@emotion/styled": "^10.0.27",
+    "@theabstractconnection/eslint-config-tac": "^1.0.3",
+    "@typescript-eslint/eslint-plugin": "^2.26.0",
+    "@typescript-eslint/parser": "^2.26.0",
     "babel-eslint": "^10.1.0",
     "babel-plugin-tailwind-components": "^0.5.10",
     "customize-cra": "^0.9.1",
@@ -53,19 +56,20 @@
     "eslint-config-prettier": "^6.10.1",
     "eslint-config-react-app": "^5.2.1",
     "eslint-loader": "^3.0.3",
-    "eslint-plugin-flowtype": "^4.6.0",
-    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-flowtype": "^4.7.0",
+    "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^1.7.0",
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "eslint-plugin-simple-import-sort": "^5.0.2",
     "postcss-cli": "^7.1.0",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.0.2",
     "react-app-rewired": "^2.1.5",
     "stylelint": "^13.2.1",
-    "tailwindcss": "^1.2.0",
-    "tailwind.macro": "^1.0.0-alpha.10"
+    "tailwind.macro": "^1.0.0-alpha.10",
+    "tailwindcss": "^1.2.0"
   }
 }
