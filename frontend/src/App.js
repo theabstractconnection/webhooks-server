@@ -9,7 +9,6 @@ import {
   faAt,
   faCopyright,
   faHeart,
-  faTrash,
 } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 import React, { useEffect, useMemo, useState } from 'react'
