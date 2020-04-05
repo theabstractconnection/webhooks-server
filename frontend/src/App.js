@@ -21,7 +21,7 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import NavBar from './components/NavBar'
 
-library.add(fab, faAngleDown, faAngleUp, faAt, faHeart, faCopyright, faTrash)
+library.add(fab, faAngleDown, faAngleUp, faAt, faHeart, faCopyright)
 
 const PROXY_PORT = 9000
 
