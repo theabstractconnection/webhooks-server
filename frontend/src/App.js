@@ -9,6 +9,7 @@ import {
   faAt,
   faCopyright,
   faHeart,
+  faTrash,
 } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 import React, { useEffect, useMemo, useState } from 'react'
@@ -21,7 +22,7 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import NavBar from './components/NavBar'
 
-library.add(fab, faAngleDown, faAngleUp, faAt, faHeart, faCopyright)
+library.add(fab, faAngleDown, faAngleUp, faAt, faHeart, faCopyright, faTrash)
 
 const PROXY_PORT = 9000
 
