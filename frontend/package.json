@@ -21,8 +21,8 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
-    "lint": "eslint --ext .js,.vue src",
-    "lint:fix": "eslint --ext .js,.vue src --fix",
+    "lint": "eslint --ext .js,.vue,.jsx src",
+    "lint:fix": "eslint --ext .js,.vue,.jsx src --fix",
     "lint:check": "eslint --print-config .eslintrc | eslint-config-prettier-check"
   },
   "eslintConfig": {
