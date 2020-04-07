@@ -1,6 +1,6 @@
 import Deployments from './deployment.controller'
 
-const deploymentRoutes = router => {
+const deploymentRoutes = (router) => {
   router.post('/', Deployments.createDeployment)
   router.get('/', Deployments.getDeployments)
   router.get('/:id', Deployments.getDeployment)

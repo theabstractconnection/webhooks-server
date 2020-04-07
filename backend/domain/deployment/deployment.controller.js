@@ -8,10 +8,10 @@ const handleError = (res, err) => {
   }
 }
 
-const createDeployment = (req, res, next) => {
+const createDeployment = (req, res) => {
   var deployment = req.body
 
-  Deployment.create(deployment, (err, deployment) => {
+  Deployment.create(deployment, (err) => {
     handleError(res, err)
     res.json({
       message: 'Deployment created successfully',
@@ -19,7 +19,7 @@ const createDeployment = (req, res, next) => {
   })
 }
 
-const getDeployments = (req, res, next) => {
+const getDeployments = (res) => {
   Deployment.get({}, (err, deployments) => {
     handleError(res, err)
     res.json({
@@ -28,7 +28,7 @@ const getDeployments = (req, res, next) => {
   })
 }
 
-const getDeployment = (req, res, next) => {
+const getDeployment = (req, res) => {
   Deployment.getById(req.params.id, (err, deployment) => {
     handleError(res, err)
     res.json({
@@ -37,12 +37,12 @@ const getDeployment = (req, res, next) => {
   })
 }
 
-const updateDeployment = (req, res, next) => {
+const updateDeployment = (req, res) => {
   var deployment = {
     name: req.body.name,
     description: req.body.description,
   }
-  Deployment.update({ _id: req.params.id }, deployment, (err, deployment) => {
+  Deployment.update({ _id: req.params.id }, deployment, (err) => {
     handleError(res, err)
     res.json({
       message: 'Deployment updated successfully',
@@ -50,9 +50,9 @@ const updateDeployment = (req, res, next) => {
   })
 }
 
-const removeDeployment = (req, res, next) => {
-  Deployment.delete({ _id: req.params.id }, (err, deployment) => {
-    handleError()
+const removeDeployment = (req, res) => {
+  Deployment.delete({ _id: req.params.id }, (err) => {
+    handleError(res, err)
     res.json({
       message: 'Deployment deleted successfully',
     })
