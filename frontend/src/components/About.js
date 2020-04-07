@@ -53,7 +53,7 @@ const About = () => {
               >
                 this repository
               </a>{' '}
-              for details)to pull/build and start (as services) dockerized
+              for details) to pull/build and start (as services) dockerized
               projects with docker-compose. Projects are mapped to subdomains
               with Nginx reverse proxy
             </p>
