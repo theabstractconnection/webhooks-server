@@ -1,8 +1,9 @@
+/*eslint-disable react-hooks/rules-of-hooks*/
 const {
-  addBabelPlugin,
+  // addBabelPlugin,
   addDecoratorsLegacy,
   addPostcssPlugins,
-  disableEsLint,
+  // disableEsLint,
   useEslintRc,
   override,
   overrideDevServer,
