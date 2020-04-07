@@ -31,13 +31,15 @@ app.use(
     )
   )
 )
+/*eslint-disable-next-line*/
 app.use((err, req, res, next) => {
   if (err) console.error(err)
   res.status(403).send('Request body was not signed or verification failed')
 })
 
 // WEBSOCKET
-app.ws('/socket', function(ws, req) {
+/*eslint-disable-next-line*/
+app.ws('/socket', function (ws, req) {
   console.log('Total connected clients:', aWss.clients.size)
 })
 
@@ -49,7 +51,7 @@ deploymentRoutes(deploymentRouter)
 app.post('/api/deploy', verifyPostData, (req, res) => {
   const sender = req.body.sender.login
   const organization = req.body.repository.owner.login
-  
+
   if (
     sender === process.env.GITHUB_USERNAME &&
     organization === process.env.GITHUB_ORGANIZATION
