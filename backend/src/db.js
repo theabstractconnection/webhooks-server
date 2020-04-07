@@ -20,7 +20,7 @@ const buildDatabaseURL = () => {
   return databaseURL
 }
 
-const connectDatabase = async (callback) => {
+const connectDatabase = async callback => {
   try {
     await mongoose.connect(buildDatabaseURL(), {
       useNewUrlParser: true,

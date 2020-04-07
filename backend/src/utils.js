@@ -66,15 +66,15 @@ const spawnChild = (repositoryName, repositorySshUrl, target) => {
 }
 
 const getClients = () => aWss.clients
-const broadcast = (message) => {
-  getClients().forEach((client) => {
+const broadcast = message => {
+  getClients().forEach(client => {
     if (client.readyState === client.OPEN) {
       client.send(message)
     }
   })
 }
-const formatLogData = (data) => {
-  return data.split('\n').filter((d) => d)
+const formatLogData = data => {
+  return data.split('\n').filter(d => d)
 }
 
 const appendToProcessLog = (fullLog, type, data) => {
@@ -116,7 +116,7 @@ const updateDeployment = (deployment, logs, status) => {
 const catchWronglyConsideredAsStderr = (d, type) => {
   const mappings = ['is up-to-date', 'Building']
   let rightType
-  mappings.forEach((m) => {
+  mappings.forEach(m => {
     rightType = d.includes(m) ? 'stdout' : type
   })
   return rightType
@@ -124,8 +124,8 @@ const catchWronglyConsideredAsStderr = (d, type) => {
 
 const handleProcessOutput = (type, deploymentProcess, fullLog, deployment) => {
   deploymentProcess[type].setEncoding('utf8')
-  deploymentProcess[type].on('data', (data) => {
-    formatLogData(data).forEach((d) => {
+  deploymentProcess[type].on('data', data => {
+    formatLogData(data).forEach(d => {
       type = catchWronglyConsideredAsStderr(d, type)
       appendToProcessLog(fullLog, type, d)
       broadcastLog(deployment._id, type, d)
