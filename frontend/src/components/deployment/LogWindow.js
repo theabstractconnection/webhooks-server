@@ -60,7 +60,7 @@ const LogWindow = () => {
       let lastLog = logWindowRef.current.lastChild
       logWindowRef.current.scrollTop = lastLog.offsetHeight + lastLog.offsetTop
     }
-  }, [logWindowRef])
+  }, [logs])
 
   return (
     <LogWindowItem className="LogWindow">
