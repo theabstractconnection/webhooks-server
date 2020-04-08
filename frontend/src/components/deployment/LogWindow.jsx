@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React, { useContext, useEffect, useRef } from 'react'
 import tw from 'tailwind.macro'
 
-import { DeploymentContext } from '../Deployment'
+import { DeploymentContext } from '../../contexts/DeploymentContext'
 
 const LogWindowItem = styled.div`
   ${tw`relative h-full`}

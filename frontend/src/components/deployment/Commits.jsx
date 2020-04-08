@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React, { useContext } from 'react'
 import tw from 'tailwind.macro'
 
-import { DeploymentContext } from '../Deployment'
+import { DeploymentContext } from '../../contexts/DeploymentContext'
 
 const CommitsItem = styled.div`
   flex-grow: 1;

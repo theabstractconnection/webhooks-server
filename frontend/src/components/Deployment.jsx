@@ -1,47 +1,22 @@
 import PropTypes from 'prop-types'
-import React, { createContext, useContext, useState } from 'react'
+import React, { useContext } from 'react'
 
-import AdditionalInfos from './deployment/AdditionalInfos'
+import AdditionalInfos from '../components/deployment/AdditionalInfos'
 import {
   Card,
   CardContent,
   CardContentFooter,
   CardContentHeader,
   CardPicture,
-} from './deployment/Card'
-import LogWindow from './deployment/LogWindow'
-import Repository from './deployment/Repository'
+} from '../components/deployment/Card'
+import LogWindow from '../components/deployment/LogWindow'
+import Repository from '../components/deployment/Repository'
+import {
+  DeploymentContext,
+  deploymentShape,
+} from '../contexts/DeploymentContext'
 
-const deploymentShape = {
-  _id: PropTypes.string.isRequired,
-  data: PropTypes.object.isRequired,
-  logs: PropTypes.array.isRequired,
-  status: PropTypes.string.isRequired,
-  webhookDeliveryId: PropTypes.string.isRequired,
-}
-
-// Create Context Object
-export const DeploymentContext = createContext()
-
-// Create a provider for components to consume and subscribe to changes
-export const DeploymentContextProvider = (props) => {
-  const { children, deployment } = props
-  const [expanded, setExpanded] = useState(
-    deployment.status === 'Pending' ? true : false
-  )
-
-  return (
-    <DeploymentContext.Provider value={[deployment, expanded, setExpanded]}>
-      {children ? children : ''}
-    </DeploymentContext.Provider>
-  )
-}
-
-DeploymentContextProvider.propTypes = {
-  deployment: PropTypes.shape(deploymentShape).isRequired,
-}
-
-export const Deployment = () => {
+const Deployment = () => {
   const [deployment, expanded, setExpanded] = useContext(DeploymentContext)
   const handleExpand = () => setExpanded(!expanded)
   const {
@@ -68,3 +43,5 @@ export const Deployment = () => {
 Deployment.propTypes = {
   deployment: PropTypes.shape(deploymentShape).isRequired,
 }
+
+export default Deployment

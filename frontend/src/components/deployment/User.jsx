@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import React, { useContext } from 'react'
 import tw from 'tailwind.macro'
 
-import { DeploymentContext } from '../Deployment'
+import { DeploymentContext } from '../../contexts/DeploymentContext'
 
 const UserItem = styled.div`
   ${(props) =>

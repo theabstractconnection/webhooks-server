@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import React, { useContext } from 'react'
 import tw from 'tailwind.macro'
 
-import { DeploymentContext } from '../Deployment'
+import { DeploymentContext } from '../../contexts/DeploymentContext'
 
 const StatusItem = styled.span`
   ${(props) =>

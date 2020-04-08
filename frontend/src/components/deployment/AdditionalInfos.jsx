@@ -2,9 +2,9 @@ import styled from '@emotion/styled'
 import React, { useContext } from 'react'
 import tw from 'tailwind.macro'
 
-import { DeploymentContext } from '../Deployment'
-import Commits from './Commits'
-import User from './User'
+import Commits from '../../components/deployment/Commits'
+import User from '../../components/deployment/User'
+import { DeploymentContext } from '../../contexts/DeploymentContext'
 
 const AdditionalInfosItem = styled.div`
   flex-grow: 1;
