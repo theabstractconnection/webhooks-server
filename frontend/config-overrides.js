@@ -1,8 +1,10 @@
 /*eslint-disable react-hooks/rules-of-hooks*/
+const path = require('path')
 const {
   // addBabelPlugin,
   addDecoratorsLegacy,
   addPostcssPlugins,
+  addWebpackAlias,
   // disableEsLint,
   useEslintRc,
   override,
@@ -20,6 +22,9 @@ module.exports = {
     // disableEsLint(),
     // use eslintrc config file
     useEslintRc('./.eslintrc'),
+    addWebpackAlias({
+      '~': path.resolve(__dirname, 'src'),
+    }),
     // addBabelPlugin(['emotion']),
     // addBabelPlugin([
     //   'tailwind-components',
