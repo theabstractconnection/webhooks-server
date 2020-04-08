@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+
 import Deployment from './domain/deployment/deployment.model'
 
 const {
@@ -25,6 +26,7 @@ const connectDatabase = async (callback) => {
     await mongoose.connect(buildDatabaseURL(), {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useFindAndModify: false,
     })
     callback()
   } catch (error) {
