@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+
 import deploymentSchema from './deployment.schema'
 
 deploymentSchema.statics = {
