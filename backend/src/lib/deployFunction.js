@@ -33,7 +33,7 @@ export const deployFunction = (req, res) => {
       deployment._doc,
       fullLog
     )
-    const outputTypes = [('stdout', 'stderr')]
+    const outputTypes = ['stdout', 'stderr']
     outputTypes.forEach((type) => deploymentProcess.handleProcessOutput(type))
   })
 
