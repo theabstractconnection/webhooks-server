@@ -10,7 +10,7 @@ const ExpandItem = styled.div`
 `
 
 const Expand = () => {
-  const [expanded, handleExpand] = useContext(DeploymentContext)
+  const { expanded, handleExpand } = useContext(DeploymentContext)
 
   return (
     <ExpandItem onClick={handleExpand}>

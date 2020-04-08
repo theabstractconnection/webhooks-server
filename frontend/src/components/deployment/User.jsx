@@ -25,7 +25,7 @@ const Email = styled.div`
 `
 
 const User = () => {
-  const [deployment, expanded] = useContext(DeploymentContext)
+  const { deployment, expanded } = useContext(DeploymentContext)
   const {
     data: { sender, pusher },
   } = deployment

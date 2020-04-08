@@ -35,7 +35,7 @@ Commit.propTypes = {
 }
 
 const Commits = () => {
-  const [deployment] = useContext(DeploymentContext)
+  const { deployment } = useContext(DeploymentContext)
   const {
     data: { commits },
   } = deployment

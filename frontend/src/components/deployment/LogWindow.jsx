@@ -51,7 +51,7 @@ Log.propTypes = {
 }
 
 const LogWindow = () => {
-  const [deployment] = useContext(DeploymentContext)
+  const { deployment } = useContext(DeploymentContext)
   const { logs } = deployment
   const logWindowRef = useRef(null)
 

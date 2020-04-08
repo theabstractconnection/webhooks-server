@@ -20,7 +20,7 @@ const DeploymentId = styled.div`
 `
 
 const AdditionalInfos = () => {
-  const [deployment, expanded] = useContext(DeploymentContext)
+  const { deployment, expanded } = useContext(DeploymentContext)
   const { webhookDeliveryId } = deployment
 
   return (

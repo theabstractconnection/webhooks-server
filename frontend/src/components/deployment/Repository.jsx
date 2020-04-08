@@ -28,7 +28,7 @@ const RepositoryOwner = styled.a`
 `
 
 const Repository = () => {
-  const [deployment, expanded] = useContext(DeploymentContext)
+  const { deployment, expanded } = useContext(DeploymentContext)
   const {
     data: { repository, zen },
   } = deployment

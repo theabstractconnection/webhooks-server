@@ -17,7 +17,7 @@ const StatusItem = styled.span`
 `
 
 const Status = () => {
-  const [deployment] = useContext(DeploymentContext)
+  const { deployment } = useContext(DeploymentContext)
   const { status } = deployment
   return (
     <StatusItem status={status}>
