@@ -1,4 +1,9 @@
 {
   "extends": ["@theabstractconnection/eslint-config"],
-  "ignorePatterns": ["node_modules/", "dist"]
+  "ignorePatterns": ["node_modules/", "dist"],
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  }
 }
