@@ -1,14 +1,13 @@
-import express from 'express'
-import expressWs from 'express-ws'
 import bodyParser from 'body-parser'
 import compression from 'compression'
+import express from 'express'
+import expressWs from 'express-ws'
 import path from 'path'
 
-import { connectDatabase } from './db'
-import { verifyPostData } from './middlewares'
-import { deploy } from './utils'
-
-import deploymentRoutes from './domain/deployment/deployment.routes'
+import { connectDatabase } from '~/db'
+import deploymentRoutes from '~/domain/deployment/deployment.routes'
+import { deployFunction } from '~/lib/deployFunction'
+import { verifyPostData } from '~/middlewares'
 
 const PORT = process.env.PORT || 9000
 
@@ -56,7 +55,7 @@ app.post('/api/deploy', verifyPostData, (req, res) => {
     sender === process.env.GITHUB_USERNAME &&
     organization === process.env.GITHUB_ORGANIZATION
   ) {
-    deploy(req, res)
+    deployFunction(req, res)
   }
 })
 
