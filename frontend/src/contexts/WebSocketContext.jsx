@@ -54,7 +54,6 @@ export const WebSocketContextProvider = (props) => {
       const lastMessageData = JSON.parse(lastMessage.data)
       // const currentWebsocketUrl = getWebSocket().url
       // console.log('received a message from ', currentWebsocketUrl)
-      console.log(lastMessageData.deployment)
 
       if (lastMessageData.event === 'deploy') {
         setDeployments((prev) => [lastMessageData.deployment].concat(prev))
