@@ -1,6 +1,7 @@
+import React from 'react'
+
 import Footer from './components/Footer'
 import NavBar from './components/NavBar'
-import React from 'react'
 
 const BaseLayout = (props) => {
   const { children } = props
