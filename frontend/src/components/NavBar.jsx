@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import WebHooks from '../assets/images/webhooks.png'
+import WebHooks from '~/assets/images/webhooks.png'
 
 const NavLink = (props) => {
   const { clickHandler, name, to } = props

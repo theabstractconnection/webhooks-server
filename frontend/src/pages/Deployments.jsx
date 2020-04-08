@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 
-import Deployment from '../components/Deployment'
-import { DeploymentContextProvider } from '../contexts/DeploymentContext'
-import { WebSocketContext } from '../contexts/WebSocketContext'
+import Deployment from '~/components/Deployment'
+import { DeploymentContextProvider } from '~/contexts/DeploymentContext'
+import { WebSocketContext } from '~/contexts/WebSocketContext'
 
 const Deployments = () => {
   const [deployments] = useContext(WebSocketContext)

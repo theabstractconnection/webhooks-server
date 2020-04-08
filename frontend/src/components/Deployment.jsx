@@ -1,20 +1,20 @@
 import PropTypes from 'prop-types'
 import React, { useContext } from 'react'
 
-import AdditionalInfos from '../components/deployment/AdditionalInfos'
+import AdditionalInfos from '~/components/deployment/AdditionalInfos'
 import {
   Card,
   CardContent,
   CardContentFooter,
   CardContentHeader,
   CardPicture,
-} from '../components/deployment/Card'
-import LogWindow from '../components/deployment/LogWindow'
-import Repository from '../components/deployment/Repository'
+} from '~/components/deployment/Card'
+import LogWindow from '~/components/deployment/LogWindow'
+import Repository from '~/components/deployment/Repository'
 import {
   DeploymentContext,
   deploymentShape,
-} from '../contexts/DeploymentContext'
+} from '~/contexts/DeploymentContext'
 
 const Deployment = () => {
   const [deployment, expanded, setExpanded] = useContext(DeploymentContext)

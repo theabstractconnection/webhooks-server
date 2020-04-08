@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useContext } from 'react'
 import tw from 'tailwind.macro'
 
-import Summary from '../../components/deployment/Summary'
-import { DeploymentContext } from '../../contexts/DeploymentContext'
+import Summary from '~/components/deployment/Summary'
+import { DeploymentContext } from '~/contexts/DeploymentContext'
 
 const RepositoryItem = styled.div`
   ${(props) => (!props.expanded ? tw`` : tw`mb-4`)}

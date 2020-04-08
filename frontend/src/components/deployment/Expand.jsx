@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useContext } from 'react'
 import tw from 'tailwind.macro'
 
-import { DeploymentContext } from '../../contexts/DeploymentContext'
+import { DeploymentContext } from '~/contexts/DeploymentContext'
 
 const ExpandItem = styled.div`
   ${tw`px-2 flex items-center justify-center`}

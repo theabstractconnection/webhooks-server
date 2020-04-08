@@ -9,7 +9,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
 
-import { WebSocketContextProvider } from './contexts/WebSocketContext'
+import { WebSocketContextProvider } from '~/contexts/WebSocketContext'
+
 import RouterSwitch from './RouterSwitch'
 
 library.add(fab, faAngleDown, faAngleUp, faAt, faHeart, faCopyright)

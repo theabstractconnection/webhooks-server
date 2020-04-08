@@ -1,10 +1,11 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
+import About from '~/pages/About'
+import Deployments from '~/pages/Deployments'
+import Home from '~/pages/Home'
+
 import BaseLayout from './BaseLayout'
-import About from './pages/About'
-import Deployments from './pages/Deployments'
-import Home from './pages/Home'
 
 const RouterSwitch = () => {
   return (
