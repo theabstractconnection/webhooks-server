@@ -6,7 +6,6 @@ import { WebSocketContext } from '~/contexts/WebSocketContext'
 
 const Deployments = () => {
   const { deployments } = useContext(WebSocketContext)
-  console.log(deployments)
   return (
     <div className="container mx-auto min-h-screen" id="Deployments">
       {deployments.map((deployment) => {
