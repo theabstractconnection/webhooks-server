@@ -5,24 +5,23 @@ import useWebSocket, { ReadyState } from 'react-use-websocket'
 
 const PROXY_PORT = 9000
 
+const buildSocketUrl = () => {
+  const socketProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
+  const hostname = window.location.hostname
+  const port = window.location.port
+  const socketUrl = `${socketProtocol}//${hostname}${
+    port ? ':' + PROXY_PORT : ''
+  }/socket`
+  // console.log(socketUrl)
+  return socketUrl
+}
+
 // Create Context Object
 export const WebSocketContext = createContext()
 
 // Create a provider for components to consume and subscribe to changes
 export const WebSocketContextProvider = (props) => {
   const { children } = props
-  const buildSocketUrl = () => {
-    const socketProtocol =
-      window.location.protocol === 'https:' ? 'wss:' : 'ws:'
-    const hostname = window.location.hostname
-    const port = window.location.port
-    const socketUrl = `${socketProtocol}//${hostname}${
-      port ? ':' + PROXY_PORT : ''
-    }/socket`
-    return socketUrl
-  }
-
-  // console.log(buildSocketUrl())
 
   const options = useMemo(
     () => ({
@@ -79,7 +78,7 @@ export const WebSocketContextProvider = (props) => {
     }
   }, [lastMessage])
 
-  const connectionStatus = {
+  let connectionStatus = {
     [ReadyState.CONNECTING]: 'Connecting',
     [ReadyState.OPEN]: 'Open',
     [ReadyState.CLOSING]: 'Closing',
@@ -87,8 +86,8 @@ export const WebSocketContextProvider = (props) => {
   }[readyState]
 
   return (
-    <WebSocketContext.Provider value={[deployments, connectionStatus]}>
-      {children ? children : ''}
+    <WebSocketContext.Provider value={{ deployments, connectionStatus }}>
+      {children && children}
     </WebSocketContext.Provider>
   )
 }

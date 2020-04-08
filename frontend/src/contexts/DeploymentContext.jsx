@@ -21,8 +21,8 @@ export const DeploymentContextProvider = (props) => {
   )
 
   return (
-    <DeploymentContext.Provider value={[deployment, expanded, setExpanded]}>
-      {children ? children : ''}
+    <DeploymentContext.Provider value={{ deployment, expanded, setExpanded }}>
+      {children && children}
     </DeploymentContext.Provider>
   )
 }
